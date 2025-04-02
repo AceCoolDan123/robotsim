@@ -10,12 +10,12 @@ import robotsim.model.Point;
 import robotsim.model.Puck;
 import robotsim.model.Room;
 
-public class TestRobotSim {
+public class Main {
     public static void main(String[] args) 
     {
         int length = 10;
-        Point point00 = new Point(0, 0);
-        Dimension dim00 = new Dimension(point00, point00, point00, point00);
+        Point point00 = createPoint(0, 0);
+        Dimension dim00 = new Dimension(createPoint(100,0), createPoint(0,0), point00, point00);
 
 
         Room[] rooms = new Room[3];
@@ -33,6 +33,11 @@ public class TestRobotSim {
         factory1.addRobot(point00, new Dimension(point00, point00, point00, point00), "Robot2");
 
         System.out.println(factory1);
+    }
+
+    private static Point createPoint(double x, double y)
+    {
+        return new Point(x, y);
     }
 
     private static Door[] createSingleArrayDoors(String name)
