@@ -15,7 +15,7 @@ public class Main {
     {
         int length = 10;
         Point point00 = createPoint(0, 0);
-        Dimension dim00 = new Dimension(createPoint(100,0), createPoint(0,0), point00, point00);
+        Dimension dimFact = new Dimension(createPoint(0,100), createPoint(100,100), createPoint(100,0), createPoint(0,0));
 
 
         Room[] rooms = new Room[3];
