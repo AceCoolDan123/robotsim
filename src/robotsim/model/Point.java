@@ -1,6 +1,6 @@
 package robotsim.model;
 
-public class Point {
+public class Point implements Vertex {
 
     public double x;
     public double y;
@@ -9,6 +9,16 @@ public class Point {
         this.x = x;
         this.y = y;
     }
+
+    public int getxCoordinate()
+    {
+        return (int) x;
+    };
+
+    public int getyCoordinate()
+    {
+        return (int) y;
+    };
 
     @Override
     public String toString()
