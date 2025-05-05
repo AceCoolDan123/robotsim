@@ -15,6 +15,16 @@ public class Dimension
         this.cornerLB = new Point(cornerLB.x, cornerLB.y);
     } 
 
+    public float getWidth() 
+    {
+        return cornerRT.distance(cornerLT);
+    }
+
+    public float getHeight() 
+    {
+        return cornerRT.distance(cornerRB);
+    }
+
     @Override
     public String toString()
     {

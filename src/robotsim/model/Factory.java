@@ -13,6 +13,7 @@ public class Factory extends Component implements Canvas
     /* -------------------------- ATTRIBUTS CANVAS -------------------------- */
     
     private Collection<Component> components = new Collection();
+    private String Id = "";
 
     public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
@@ -63,6 +64,29 @@ public class Factory extends Component implements Canvas
     public String toString()
     {
         return "Factory [name =" + getName() + ", robots =" + robots + ", rooms = " + Arrays.toString(rooms) + ", chargingStations = " + Arrays.toString(chargingStations) + ", pucks = " + Arrays.toString(pucks) + "]";
+    }
+
+
+    /* -------------------------- METHODES CANVAS -------------------------- */
+
+    public String getId()
+    {
+        return id;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
+    public int getWidth()
+    {
+        return dimension.getWidth();
+    }
+
+    public int getHeight()
+    {
+        return dimension.getHeight();
     }
 
     public Collection<Figure> getFigures() {
