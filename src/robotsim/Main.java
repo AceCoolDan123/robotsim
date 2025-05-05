@@ -67,11 +67,11 @@ public class Main {
 
     private static Area[] createSingleArrayAreaWithOneMachine(String name, Point pos)
     {
-        Dimension dim00 = createDimension(pos, 100, 100); 
+        Dimension dimension = createDimension(pos, 100, 100); 
         Area[] res = new Area[1];
         Machine[] machines = new Machine[1];
-        machines[0] = new Machine(pos, dim00, "name's Machine");
-        res[0] = new Area(pos, dim00, machines, name);
+        machines[0] = new Machine(pos, dimension, "name's Machine");
+        res[0] = new Area(pos, dimension, machines, name);
         return res;
     }
 
