@@ -14,7 +14,7 @@ public class Factory extends Component implements Canvas
     public final ChargingStation[] chargingStations;
     public Puck[] pucks;
 
-    /* -------------------------- ATTRIBUTS CANVAS -------------------------- */
+    /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
     
     private ArrayList<Component> components = new ArrayList();
     private String Id = "";

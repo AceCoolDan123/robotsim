@@ -15,14 +15,14 @@ public class Dimension
         this.cornerLB = new Point(cornerLB.x, cornerLB.y);
     } 
 
-    public float getWidth() 
+    public int getWidth() 
     {
-        return cornerRT.distance(cornerLT);
+        return (int) cornerRT.distance(cornerLT);
     }
 
-    public float getHeight() 
+    public int getHeight() 
     {
-        return cornerRT.distance(cornerRB);
+        return (int) cornerRT.distance(cornerRB);
     }
 
     @Override

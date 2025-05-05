@@ -10,7 +10,7 @@ public class Component implements Figure
     public Dimension dimension;
     private final String name;
     
-    /* -------------------------- ATTRIBUTS FIGURE -------------------------- */
+    /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
 
     protected Shape shape;
     protected Style style;
@@ -42,7 +42,7 @@ public class Component implements Figure
     }
 
 
-    /* -------------------------- METHODES CANVAS -------------------------- */
+    /* -------------------------- METHODS FIGURE -------------------------- */
 
 
     public int getxCoordinate() 

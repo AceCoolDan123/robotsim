@@ -2,6 +2,13 @@ package robotsim.model;
 public class Robot extends Component
 {
     private final double speed;
+
+    /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
+
+    shape = BasicOval(dimension.getWidth, dimension.getHeight);
+    style = DefaultRobot;
+
+
     public Robot(Point position, Dimension dimension, String name, double speed)
     {
         super(position, dimension, name, RGBColor.GREEN);

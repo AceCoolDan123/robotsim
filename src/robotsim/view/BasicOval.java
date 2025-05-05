@@ -1,4 +1,24 @@
 
 
-public class Oval implements OvalShape
-{}
+public class BasicOval implements OvalShape
+{
+    private final int width;
+    private final int height;
+
+    public BasicOval(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+}
