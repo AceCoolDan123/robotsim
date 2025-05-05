@@ -1,4 +1,5 @@
 package robotsim.model;
+import java.lang.math
 
 public class Point implements Vertex {
 
@@ -19,6 +20,17 @@ public class Point implements Vertex {
     {
         return (int) y;
     };
+
+    public float distance(Point point2) 
+    {
+        int x2 = point2.getxCoordinate;
+        int y2 = point2.getyCoordinate;
+        
+        float dx = (float) x-x2;
+        float dy = (float) y-y2;
+        
+        return Math.sqrt((dx*dx) + (dy*dy))
+    }
 
     @Override
     public String toString()

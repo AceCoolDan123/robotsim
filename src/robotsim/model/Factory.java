@@ -3,21 +3,18 @@ package robotsim.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Factory extends Component
+public class Factory extends Component implements Canvas
 {
     public ArrayList<Robot> robots;
     public final Room[] rooms;
     public final ChargingStation[] chargingStations;
     public Puck[] pucks;
 
-<<<<<<< HEAD
     /* -------------------------- ATTRIBUTS CANVAS -------------------------- */
     
     private Collection<Component> components = new Collection();
     private String Id = "";
 
-=======
->>>>>>> b0b165da66b60cc02f95ca7a97f2d13e7921a45c
     public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
         super(position, dimension, name);
@@ -68,7 +65,6 @@ public class Factory extends Component
     {
         return "Factory [name =" + getName() + ", robots =" + robots + ", rooms = " + Arrays.toString(rooms) + ", chargingStations = " + Arrays.toString(chargingStations) + ", pucks = " + Arrays.toString(pucks) + "]";
     }
-<<<<<<< HEAD
 
 
     /* -------------------------- METHODES CANVAS -------------------------- */
@@ -97,6 +93,6 @@ public class Factory extends Component
         return (Collection) components;
     } 
 
-=======
->>>>>>> b0b165da66b60cc02f95ca7a97f2d13e7921a45c
+    public Style getStyle();
+
 }
