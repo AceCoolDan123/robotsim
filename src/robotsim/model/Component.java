@@ -1,7 +1,9 @@
 package robotsim.model;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.impl.RGBColor;
-
+import fr.tp.inf112.projects.canvas.model.Color;
+import fr.tp.inf112.projects.canvas.model.Style;
+import fr.tp.inf112.projects.canvas.model.Shape;
 public class Component implements Figure
 {
     public Point position;

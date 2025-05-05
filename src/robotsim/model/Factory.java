@@ -2,6 +2,10 @@ package robotsim.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import fr.tp.inf112.projects.canvas.model.Shape;
+import fr.tp.inf112.projects.canvas.model.Style;
+import fr.tp.inf112.projects.canvas.model.Figure;
+import fr.tp.inf112.projects.canvas.model.Canva;
 
 public class Factory extends Component implements Canvas
 {
@@ -12,11 +16,8 @@ public class Factory extends Component implements Canvas
 
     /* -------------------------- ATTRIBUTS CANVAS -------------------------- */
     
-    private Collection<Component> components = new Collection();
+    private ArrayList<Component> components = new ArrayList();
     private String Id = "";
-    
-    /*style;*/
-    /* */
 
     public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
@@ -26,18 +27,21 @@ public class Factory extends Component implements Canvas
         for (int i = 0; i < rooms.length; i ++)
         {
             this.rooms[i] = new Room(rooms[i].position, rooms[i].dimension, rooms[i].doors, rooms[i].areas, rooms[i].getName());
+            components.add(this.rooms[i]);
         }
 
         this.chargingStations = new ChargingStation[chargingStations.length];
         for (int i = 0; i < chargingStations.length; i ++)
         {
             this.chargingStations[i] = new ChargingStation(chargingStations[i].position, chargingStations[i].dimension, chargingStations[i].getName());
+            components.add(this.chargingStations[i]);
         }
 
         this.pucks = new Puck[pucks.length];
         for (int i = 0; i < pucks.length; i ++)
         {
             this.pucks[i] = new Puck(pucks[i].position, pucks[i].dimension, pucks[i].getName());
+            components.add(this.pucks[i]);
         }
     }
 
@@ -49,6 +53,7 @@ public class Factory extends Component implements Canvas
         }
         Robot new_robot = new Robot(position, dimension, name, 0);
         robots.add(new_robot);
+        components.add(new_robot);
         return true;
     }
 
@@ -92,8 +97,10 @@ public class Factory extends Component implements Canvas
         return dimension.getHeight();
     }
 
-    public Collection<Figure> getFigures() {
-        return (Collection) components;
+    public ArrayList<Figure> getFigures() {
+        return (ArrayList<Figure>) components;
     } 
+
+    public Style getStyle();
 
 }
