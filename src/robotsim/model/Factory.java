@@ -10,6 +10,8 @@ public class Factory extends Component implements Canvas
     public final ChargingStation[] chargingStations;
     public Puck[] pucks;
 
+    /* -------------------------- ATTRIBUTS CANVAS -------------------------- */
+    
     private Collection<Component> components = new Collection();
 
     public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
