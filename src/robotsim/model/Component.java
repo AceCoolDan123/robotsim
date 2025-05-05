@@ -6,7 +6,12 @@ public class Component implements Figure
     public Point position;
     public Dimension dimension;
     private final String name;
-    private backgroundColor = RGBColor.PINK;
+    
+    /* -------------------------- ATTRIBUTS FIGURE -------------------------- */
+
+    protected Shape shape;
+    protected Style style;
+
 
     public Component(Point position, Dimension dimension, String name)
     {
@@ -28,12 +33,33 @@ public class Component implements Figure
         return name;
     }
 
-    public RGBColor getBackgroundColor(){
-        return backgroundColor;
-    }
-
     public String getBasicPrintInfo()
     {
         return "[name = " + name + ", position = " + position + ", dimension = " + dimension + "]";
     }
+
+
+    /* -------------------------- METHODES CANVAS -------------------------- */
+
+
+    public int getxCoordinate() 
+    {
+        return position.getxCoordinate();
+    }
+    
+    public int getyCoordinate() 
+    {
+        return position.getyCoordinate();
+    }
+
+    public Style getStyle()
+    {
+        return style;
+    }
+    
+    public Shape getShape()
+    {
+        return shape;
+    }
+
 }

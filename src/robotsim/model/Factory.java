@@ -14,6 +14,9 @@ public class Factory extends Component implements Canvas
     
     private Collection<Component> components = new Collection();
     private String Id = "";
+    
+    /*style;*/
+    /* */
 
     public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
@@ -92,7 +95,5 @@ public class Factory extends Component implements Canvas
     public Collection<Figure> getFigures() {
         return (Collection) components;
     } 
-
-    public Style getStyle();
 
 }
