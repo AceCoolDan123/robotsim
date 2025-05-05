@@ -1,5 +1,6 @@
 package robotsim.model;
-import java.lang.math
+import static java.lang.Math.sqrt;
+import fr.tp.inf112.projects.canvas.model.Vertex;
 
 public class Point implements Vertex {
 
@@ -11,11 +12,13 @@ public class Point implements Vertex {
         this.y = y;
     }
 
+    @Override
     public int getxCoordinate()
     {
         return (int) x;
     };
 
+    @Override
     public int getyCoordinate()
     {
         return (int) y;
@@ -23,13 +26,13 @@ public class Point implements Vertex {
 
     public float distance(Point point2) 
     {
-        int x2 = point2.getxCoordinate;
-        int y2 = point2.getyCoordinate;
+        int x2 = point2.getxCoordinate();
+        int y2 = point2.getyCoordinate();
         
         float dx = (float) x-x2;
         float dy = (float) y-y2;
         
-        return Math.sqrt((dx*dx) + (dy*dy))
+        return sqrt((dx*dx) + (dy*dy));
     }
 
     @Override

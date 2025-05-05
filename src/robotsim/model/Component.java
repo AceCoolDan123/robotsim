@@ -1,5 +1,6 @@
 package robotsim.model;
-
+import fr.tp.inf112.projects.canvas.model.Figure;
+import fr.tp.inf112.projects.canvas.model.impl.RGBColor;
 
 public class Component implements Figure
 {
