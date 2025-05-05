@@ -4,7 +4,7 @@ public class Robot extends Component
     private final double speed;
     public Robot(Point position, Dimension dimension, String name, double speed)
     {
-        super(position, dimension, name);
+        super(position, dimension, name, RGBColor.GREEN);
         this.speed = speed;
     }
 
