@@ -3,16 +3,12 @@ package robotsim.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Factory extends Component implements Canvas
+public class Factory extends Component
 {
     public ArrayList<Robot> robots;
     public final Room[] rooms;
     public final ChargingStation[] chargingStations;
     public Puck[] pucks;
-
-    /* -------------------------- ATTRIBUTS CANVAS -------------------------- */
-    
-    private Collection<Component> components = new Collection();
 
     public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
@@ -64,9 +60,4 @@ public class Factory extends Component implements Canvas
     {
         return "Factory [name =" + getName() + ", robots =" + robots + ", rooms = " + Arrays.toString(rooms) + ", chargingStations = " + Arrays.toString(chargingStations) + ", pucks = " + Arrays.toString(pucks) + "]";
     }
-
-    public Collection<Figure> getFigures() {
-        return (Collection) components;
-    } 
-
 }
