@@ -5,6 +5,13 @@ import java.util.Arrays;
 public class Area extends Component
 {
     public Machine[] machines;
+
+    /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
+
+    style = DefaultArea;
+    shape = BasicRectangle(dimension.getWidth, dimension.getHeight);
+
+
     
     public Area(Point position, Dimension dimension, Machine[] machines, String name)
     {

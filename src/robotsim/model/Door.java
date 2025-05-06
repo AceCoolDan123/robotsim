@@ -21,9 +21,14 @@ public class Door
     Style closedStyle = DefaultClosedDoor;
     Style openedStyle = DefaultOpenedDoor;
 
-    shape = BasicRectangle(10, 1);
+    if (isVertical) {
+        shape = BasicRectangle(1, 10);
+    }
+    
+    else {
+        shape = BasicRectangle(10, 1);
 
-
+    }
 
     public Door(Point left, Point right, String name)
     {

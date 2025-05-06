@@ -49,6 +49,8 @@ public class Main {
         factory1.addRobot(rightPoint, createDimension(rightPoint, robotLength, robotLength), "Robot0");
 
         System.out.println(factory1);
+
+        CanvasViewer canvasViewer = new CanvasViewer(factory1);
     }
 
     private static Point createPoint(double x, double y)

@@ -6,6 +6,14 @@ public class Room extends Component
 {
     public Door[] doors;
     public Area[] areas;
+
+    /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
+
+    style = DefaultRoom;
+    shape = BasicRectangle(dimension.getWidth, dimension.getHeight);
+
+
+
     public Room(Point position, Dimension dimension, Door[] doors, Area[] areas, String name)
     {
         super(position, dimension, name);
