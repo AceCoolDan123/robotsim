@@ -1,4 +1,5 @@
 package robotsim.model;
+
 import robotsim.view.BasicRectangle;
 import robotsim.view.BasicStyle;
 

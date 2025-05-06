@@ -1,3 +1,6 @@
+package robotsim.view;
+
+import fr.tp.inf112.projects.canvas.model.OvalShape;
 
 
 public class BasicOval implements OvalShape

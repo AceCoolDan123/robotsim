@@ -1,9 +1,12 @@
 package robotsim.model;
+
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.impl.RGBColor;
-import fr.tp.inf112.projects.canvas.model.Color;
 import fr.tp.inf112.projects.canvas.model.Style;
+import fr.tp.inf112.projects.canvas.model.Color;
 import fr.tp.inf112.projects.canvas.model.Shape;
+
+
 public class Component implements Figure
 {
     public Point position;
@@ -23,7 +26,7 @@ public class Component implements Figure
         this.name = name;
     }
 
-    public Component(Point position, Dimension dimension, String name, RGBColor backgroundColor)
+    public Component(Point position, Dimension dimension, String name, Color backgroundColor)
     {
         this.position = new Point(position.x, position.y);
         this.dimension = new Dimension(dimension.cornerLT, dimension.cornerRT, dimension.cornerLT, dimension.cornerLB);

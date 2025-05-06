@@ -1,3 +1,10 @@
+package robotsim.view;
+
+import java.util.ArrayList;
+
+import fr.tp.inf112.projects.canvas.model.Stroke;
+import fr.tp.inf112.projects.canvas.model.Color;
+import fr.tp.inf112.projects.canvas.model.impl.RGBColor;
 
 
 public class BasicStroke implements Stroke
@@ -8,14 +15,14 @@ public class BasicStroke implements Stroke
 
     public static final Stroke TRAITPLEINFIN = new BasicStroke();
 
-    public static final Stroke TRAITPOINTILLEFIN = new BasicStroke(BLACK, 0.1, [0.1, 0.1]);
+    public static final Stroke TRAITPOINTILLEFIN = new BasicStroke(BLACK, 0.1, {0.1, 0.1});
 
-    public static final Stroke TRAITPLEINEPAIS = new BasicStroke(BLACK, 0.5, []);
+    public static final Stroke TRAITPLEINEPAIS = new BasicStroke(BLACK, 0.5, {});
 
 
     public BasicStroke()
     {
-        this(BLACK, 0.1, []);
+        this(BLACK, 0.1, {});
     }
 
     public BasicStroke(Color color, float thickness, float[] dashPattern)

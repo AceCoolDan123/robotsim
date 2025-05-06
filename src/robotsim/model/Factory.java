@@ -15,7 +15,7 @@ public class Factory extends Component implements Canvas
 
     /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
     
-    private ArrayList<Figure> figures = new ArrayList();
+    private final ArrayList<Figure> figures = new ArrayList();
     private String Id = "";
 
     public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
@@ -99,7 +99,5 @@ public class Factory extends Component implements Canvas
     public ArrayList<Figure> getFigures() {
         return figures;
     } 
-
-    public Style getStyle();
 
 }
