@@ -1,6 +1,10 @@
 package robotsim.model;
+import robotsim.view.BasicRectangle;
+import robotsim.view.BasicStyle;
 
-public class Door 
+import fr.tp.inf112.projects.canvas.model.Style;
+
+public class Door implements Component 
 {
     // left in the room face to the door
     public Point left;
@@ -18,23 +22,22 @@ public class Door
      */
     private boolean isVertical;
 
-    Style closedStyle = DefaultClosedDoor;
-    Style openedStyle = DefaultOpenedDoor;
+    Style closedStyle = BasicStyle.DefaultClosedDoor;
+    Style openedStyle = BasicStyle.DefaultOpenedDoor;
 
-    if (isVertical) {
-        shape = BasicRectangle(1, 10);
-    }
-    
-    else {
-        shape = BasicRectangle(10, 1);
 
-    }
-
-    public Door(Point left, Point right, String name)
+    public Door(Point left, Point right, bool isVertical, String name)
     {
+        if (isVertical) {
+            shape = BasicRectangle(1, 10);
+        }
+        
+        else {
+            shape = BasicRectangle(10, 1);
+
+        }
         this.left = new Point(left.x, left.y);
         this.right = new Point(right.x, right.y);
-        this.name = name;
     }
 
     public String getName()
