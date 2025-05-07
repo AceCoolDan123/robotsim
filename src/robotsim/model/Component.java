@@ -1,9 +1,7 @@
 package robotsim.model;
 
 import fr.tp.inf112.projects.canvas.model.Figure;
-import fr.tp.inf112.projects.canvas.model.impl.RGBColor;
 import fr.tp.inf112.projects.canvas.model.Style;
-import fr.tp.inf112.projects.canvas.model.Color;
 import fr.tp.inf112.projects.canvas.model.Shape;
 
 
@@ -15,8 +13,8 @@ public class Component implements Figure
     
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
 
-    protected Shape shape;
-    protected Style style;
+    private Shape shape;
+    private Style style;
 
 
     public Component(Point position, Dimension dimension, String name)
@@ -26,13 +24,13 @@ public class Component implements Figure
         this.name = name;
     }
 
-    public Component(Point position, Dimension dimension, String name, Color backgroundColor)
+    /*public Component(Point position, Dimension dimension, String name, Color backgroundColor)
     {
         this.position = new Point(position.x, position.y);
         this.dimension = new Dimension(dimension.cornerLT, dimension.cornerRT, dimension.cornerLT, dimension.cornerLB);
         this.name = name;
         this.backgroundColor = backgroundColor;
-    }
+    }*/
 
     public String getName()
     {
@@ -44,6 +42,15 @@ public class Component implements Figure
         return "[name = " + name + ", position = " + position + ", dimension = " + dimension + "]";
     }
 
+    protected void setShape(Shape shape)
+    {
+        this.shape = shape;
+    }
+    
+    protected void setStyle(Style style)
+    {
+        this.style = style;
+    }
 
     /* -------------------------- METHODS FIGURE -------------------------- */
 
@@ -67,5 +74,6 @@ public class Component implements Figure
     {
         return shape;
     }
+
 
 }

@@ -5,13 +5,12 @@ import robotsim.view.BasicStyle;
 
 import fr.tp.inf112.projects.canvas.model.Style;
 
-public class Door implements Component 
+public class Door extends Component 
 {
     // left in the room face to the door
     public Point left;
     // right in the room face to the door
     public Point right;
-    private final String name;
     private boolean isOpened;
 
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
@@ -23,11 +22,40 @@ public class Door implements Component
      */
     private boolean isVertical;
 
-    Style closedStyle = BasicStyle.DefaultClosedDoor;
-    Style openedStyle = BasicStyle.DefaultOpenedDoor;
+    private Style closedStyle = BasicStyle.DefaultClosedDoor;
+    private Style openedStyle = BasicStyle.DefaultOpenedDoor;
+
+    public Door(Point position, int length, String name, bool isVertical)
+    {
+        int x = position.getxCoordinate();
+        int y = position.getyCoordinate();
+ 
+        Point cornerRT; 
+        Point cornerRB; 
+        Point cornerLB;
+
+        if (isVertical) {
+            setShape(BasicRectangle(1, 10));
+            
+            cornerRT = new Point(x + 1, y); 
+            cornerRB = new Point(x + 1, y + 10); 
+            cornerLB = new Point(x, y + 10); 
+        }
+        
+        else {
+            setShape(BasicRectangle(10, 1));
+            
+            cornerRT = new Point(x + 10, y); 
+            cornerRB = new Point(x + 10, y + 1); 
+            cornerLB = new Point(x, y + 1); 
+        }
+
+        super(position, new Dimension(position, cornerRT, cornerRB, cornerLB), name);
+
+    }
 
 
-    public Door(Point left, Point right, bool isVertical, String name)
+    /*public Door(Point left, Point right, bool isVertical, String name)
     {
         if (isVertical) {
             shape = BasicRectangle(1, 10);
@@ -39,13 +67,9 @@ public class Door implements Component
         }
         this.left = new Point(left.x, left.y);
         this.right = new Point(right.x, right.y);
-    }
+    }*/
 
-    public String getName()
-    {
-        return name;
-    }
-
+    
     @Override
     public String toString()
     {
