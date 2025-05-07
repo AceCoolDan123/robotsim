@@ -89,7 +89,8 @@ public class Door extends Component
     @Override
     public String toString()
     {
-        return "Door [name = " + name + ", left = " + left + ", right = " + right + "]";
+        return "Door [name = " + getName() + ", position = "+ position + ", isVertical = " + isVertical + "]";
+        //return "Door [name = " + name + ", left = " + left + ", right = " + right + "]";
     }
 
     /* -------------------------- METHODS FIGURE -------------------------- */
