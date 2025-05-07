@@ -37,7 +37,7 @@ public class Door extends Component
         Point cornerLB;
 
         if (isVertical) {
-            setShape(BasicRectangle(thickness, length));
+            setShape(new BasicRectangle(thickness, length));
             
             cornerRT = new Point(x + thickness, y); 
             cornerRB = new Point(x + thickness, y + length); 
@@ -45,7 +45,7 @@ public class Door extends Component
         }
         
         else {
-            setShape(BasicRectangle(length, thickness));
+            setShape(new BasicRectangle(length, thickness));
             
             cornerRT = new Point(x + length, y); 
             cornerRB = new Point(x + length, y + thickness); 
