@@ -1,4 +1,6 @@
+package robotsim.view;
 
+import fr.tp.inf112.projects.canvas.model.RectangleShape;
 
 public class BasicRectangle implements RectangleShape
 {
