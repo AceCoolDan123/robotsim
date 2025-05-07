@@ -5,6 +5,8 @@ import java.util.Arrays;
 import robotsim.view.BasicRectangle;
 import robotsim.view.BasicStyle;
 
+import fr.tp.inf112.projects.canvas.model.Shape;
+
 public class Area extends Component
 {
     public Machine[] machines;
@@ -23,7 +25,7 @@ public class Area extends Component
 
         /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
         style = BasicStyle.DefaultArea;
-        shape = (Shape)(new BasicRectangle(dimension.getWidth, dimension.getHeight));
+        shape = (Shape)(new BasicRectangle(dimension.getWidth(), dimension.getHeight()));
     }
 
     @Override

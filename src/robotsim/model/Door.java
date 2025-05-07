@@ -36,7 +36,7 @@ public class Door extends Component
         Point cornerLT;
 
         if (isVertical) {
-            setShape((Shape)(new BasicRectangle(thickness, length)));
+            shape = (Shape)(new BasicRectangle(thickness, length));
             
             cornerRT = new Point(x + thickness / 2, y + length / 2); 
             cornerRB = new Point(x + thickness / 2, y - length / 2); 
@@ -45,7 +45,7 @@ public class Door extends Component
         }
         
         else {
-            setShape((Shape)(new BasicRectangle(length, thickness)));
+            shape = (Shape)(new BasicRectangle(length, thickness));
             
             cornerRT = new Point(x + length / 2, y + thickness / 2); 
             cornerRB = new Point(x + length / 2, y - thickness / 2); 
@@ -80,6 +80,16 @@ public class Door extends Component
     {
         return "Door [name = " + getName() + ", position = "+ position + ", isVertical = " + isVertical + "]";
         //return "Door [name = " + name + ", left = " + left + ", right = " + right + "]";
+    }
+
+    public boolean getIsVertical()
+    {
+        return isVertical;
+    }
+
+    public int getLength()
+    {
+        return length;
     }
 
     /* -------------------------- METHODS FIGURE -------------------------- */

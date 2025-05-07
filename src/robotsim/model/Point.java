@@ -4,9 +4,9 @@ import fr.tp.inf112.projects.canvas.model.Vertex;
 
 public class Point implements Vertex {
 
-    public double x;
-    public double y;
-    public Point(double x, double y)
+    public float x;
+    public float y;
+    public Point(float x, float y)
     {
         this.x = x;
         this.y = y;
@@ -32,7 +32,7 @@ public class Point implements Vertex {
         float dx = (float) x-x2;
         float dy = (float) y-y2;
         
-        return sqrt((dx*dx) + (dy*dy));
+        return (float)sqrt((dx*dx) + (dy*dy));
     }
 
     @Override

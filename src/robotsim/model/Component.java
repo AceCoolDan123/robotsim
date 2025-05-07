@@ -7,8 +7,8 @@ import fr.tp.inf112.projects.canvas.model.Shape;
 
 public class Component implements Figure
 {
-    public Point position;
-    public Dimension dimension;
+    protected Point position;
+    protected Dimension dimension;
     private final String name;
     
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
@@ -42,14 +42,19 @@ public class Component implements Figure
         return "[name = " + name + ", position = " + position + ", dimension = " + dimension + "]";
     }
 
-    protected void setShape(Shape shape)
-    {
-        this.shape = shape;
-    }
-    
     protected void setStyle(Style style)
     {
         this.style = style;
+    }
+
+    public Point getPosition()
+    {
+        return position;
+    }
+
+    public Dimension getDimension()
+    {
+        return dimension;
     }
 
     /* -------------------------- METHODS FIGURE -------------------------- */

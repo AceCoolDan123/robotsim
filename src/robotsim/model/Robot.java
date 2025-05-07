@@ -15,7 +15,7 @@ public class Robot extends Component
     {
         super(position, dimension, name);
         this.speed = speed;
-        this.setShape(BasicOval(dimension.getWidth(), dimension.getHeight()));
+        shape = (Shape)(new BasicOval(dimension.getWidth(), dimension.getHeight()));
         this.setStyle(DefaultRobot);
     }
 
