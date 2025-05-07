@@ -7,11 +7,13 @@ import fr.tp.inf112.projects.canvas.model.Style;
 
 public class Door extends Component 
 {
-    // left in the room face to the door
+    /*// left in the room face to the door
     public Point left;
     // right in the room face to the door
-    public Point right;
+    public Point right;*/
     private boolean isOpened;
+    private final int thickness = 1;
+    private int length;
 
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
 
@@ -22,8 +24,8 @@ public class Door extends Component
      */
     private boolean isVertical;
 
-    private Style closedStyle = BasicStyle.DefaultClosedDoor;
-    private Style openedStyle = BasicStyle.DefaultOpenedDoor;
+    private final Style closedStyle = BasicStyle.DefaultClosedDoor;
+    private final Style openedStyle = BasicStyle.DefaultOpenedDoor;
 
     public Door(Point position, int length, String name, boolean isVertical)
     {
@@ -35,25 +37,39 @@ public class Door extends Component
         Point cornerLB;
 
         if (isVertical) {
-            setShape(BasicRectangle(1, 10));
+            setShape(BasicRectangle(thickness, length));
             
-            cornerRT = new Point(x + 1, y); 
-            cornerRB = new Point(x + 1, y + 10); 
-            cornerLB = new Point(x, y + 10); 
+            cornerRT = new Point(x + thickness, y); 
+            cornerRB = new Point(x + thickness, y + length); 
+            cornerLB = new Point(x, y + length); 
         }
         
         else {
-            setShape(BasicRectangle(10, 1));
+            setShape(BasicRectangle(length, thickness));
             
-            cornerRT = new Point(x + 10, y); 
-            cornerRB = new Point(x + 10, y + 1); 
-            cornerLB = new Point(x, y + 1); 
+            cornerRT = new Point(x + length, y); 
+            cornerRB = new Point(x + length, y + thickness); 
+            cornerLB = new Point(x, y + thickness); 
         }
 
         super(position, new Dimension(position, cornerRT, cornerRB, cornerLB), name);
 
+        this.isVertical = isVertical;
+        this.isOpened = true;
+        this.length = length;
+
     }
 
+    public final boolean switchDoorState()
+    {
+        isOpened = !isOpened;
+        return isOpened;
+    }
+
+    public final boolean getDoorState()
+    {
+        return isOpened;
+    }
 
     /*public Door(Point left, Point right, bool isVertical, String name)
     {
