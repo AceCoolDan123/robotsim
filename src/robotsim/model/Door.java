@@ -36,21 +36,27 @@ public class Door extends Component
         Point cornerLT;
 
         if (isVertical) {
-            setShape(BasicRectangle(thickness, length));
+            setShape((Shape)(new BasicRectangle(thickness, length)));
             
-            cornerRT = new Point(x + thickness, y); 
-            cornerRB = new Point(x + thickness, y + length); 
-            cornerLB = new Point(x, y + length); 
+            cornerRT = new Point(x + thickness / 2, y + length / 2); 
+            cornerRB = new Point(x + thickness / 2, y - length / 2); 
+            cornerLB = new Point(x - thickness / 2, y - length / 2); 
+            cornerLT = new Point(x - thickness / 2, y + length / 2); 
         }
         
         else {
-            setShape(BasicRectangle(length, thickness));
+            setShape((Shape)(new BasicRectangle(length, thickness)));
             
-            cornerRT = new Point(x + length, y); 
-            cornerRB = new Point(x + length, y + thickness); 
-            cornerLB = new Point(x, y + thickness); 
+            cornerRT = new Point(x + length / 2, y + thickness / 2); 
+            cornerRB = new Point(x + length / 2, y - thickness / 2); 
+            cornerLB = new Point(x - length / 2, y - thickness / 2); 
+            cornerLT = new Point(x - length / 2, y + thickness / 2); 
         }
 
+        dimension.cornerLB = cornerLB;
+        dimension.cornerLT = cornerLT;
+        dimension.cornerRT = cornerRT;
+        dimension.cornerRB = cornerRB;
 
         this.isVertical = isVertical;
         this.isOpened = true;
