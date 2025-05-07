@@ -13,8 +13,8 @@ public class Component implements Figure
     
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
 
-    private Shape shape;
-    private Style style;
+    protected Shape shape;
+    protected Style style;
 
 
     public Component(Point position, Dimension dimension, String name)

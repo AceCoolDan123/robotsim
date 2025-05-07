@@ -4,16 +4,14 @@ import robotsim.view.BasicRectangle;
 import robotsim.view.BasicStyle;
 
 import fr.tp.inf112.projects.canvas.model.Style;
+import fr.tp.inf112.projects.canvas.model.Shape;
 
 public class Door extends Component 
 {
-    /*// left in the room face to the door
-    public Point left;
-    // right in the room face to the door
-    public Point right;*/
     private boolean isOpened;
     private final int thickness = 1;
     private int length;
+    private boolean isVertical;
 
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
 
@@ -22,22 +20,23 @@ public class Door extends Component
         (isVertical == true)  => |
         (isVertical == false) => --
      */
-    private boolean isVertical;
 
     private final Style closedStyle = BasicStyle.DefaultClosedDoor;
     private final Style openedStyle = BasicStyle.DefaultOpenedDoor;
 
     public Door(Point position, int length, String name, boolean isVertical)
     {
+        super(position, new Dimension(), name);
         int x = position.getxCoordinate();
         int y = position.getyCoordinate();
  
         Point cornerRT; 
         Point cornerRB; 
         Point cornerLB;
+        Point cornerLT;
 
         if (isVertical) {
-            setShape(BasicRectangle(thickness, length));
+            //setShape(new BasicRectangle(thickness, length));
             
             cornerRT = new Point(x + thickness, y); 
             cornerRB = new Point(x + thickness, y + length); 
@@ -45,14 +44,13 @@ public class Door extends Component
         }
         
         else {
-            setShape(BasicRectangle(length, thickness));
+            //setShape(new BasicRectangle(length, thickness));
             
             cornerRT = new Point(x + length, y); 
             cornerRB = new Point(x + length, y + thickness); 
             cornerLB = new Point(x, y + thickness); 
         }
 
-        super(position, new Dimension(position, cornerRT, cornerRB, cornerLB), name);
 
         this.isVertical = isVertical;
         this.isOpened = true;
@@ -71,21 +69,6 @@ public class Door extends Component
         return isOpened;
     }
 
-    /*public Door(Point left, Point right, bool isVertical, String name)
-    {
-        if (isVertical) {
-            shape = BasicRectangle(1, 10);
-        }
-        
-        else {
-            shape = BasicRectangle(10, 1);
-
-        }
-        this.left = new Point(left.x, left.y);
-        this.right = new Point(right.x, right.y);
-    }*/
-
-    
     @Override
     public String toString()
     {
