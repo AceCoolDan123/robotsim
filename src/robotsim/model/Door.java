@@ -25,7 +25,7 @@ public class Door extends Component
     private Style closedStyle = BasicStyle.DefaultClosedDoor;
     private Style openedStyle = BasicStyle.DefaultOpenedDoor;
 
-    public Door(Point position, int length, String name, bool isVertical)
+    public Door(Point position, int length, String name, boolean isVertical)
     {
         int x = position.getxCoordinate();
         int y = position.getyCoordinate();

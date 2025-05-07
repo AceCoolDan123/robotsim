@@ -63,10 +63,8 @@ public class Main {
 
     private static Door[] createSingleArrayHorizontalDoors(String name, Point pos)
     {
-        Point left = new Point(pos.x - 10, pos.y);
-        Point right = new Point(pos.x + 10, pos.y);
         Door[] res = new Door[1];
-        res[0] = new Door(left, right, name);
+        res[0] = new Door(pos, 10, name, true);
         return res;
     }
 
