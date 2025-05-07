@@ -20,7 +20,7 @@ public class Component implements Figure
     public Component(Point position, Dimension dimension, String name)
     {
         this.position = new Point(position.x, position.y);
-        this.dimension = new Dimension(dimension.cornerLT, dimension.cornerRT, dimension.cornerLT, dimension.cornerLB);
+        this.dimension = new Dimension(dimension.getHeight(), dimension.getWidth());
         this.name = name;
     }
 
@@ -62,12 +62,12 @@ public class Component implements Figure
 
     public int getxCoordinate() 
     {
-        return position.getxCoordinate();
+        return (int)position.x;
     }
     
     public int getyCoordinate() 
     {
-        return position.getyCoordinate();
+        return (int)position.y;
     }
 
     public Style getStyle()

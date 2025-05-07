@@ -2,43 +2,35 @@ package robotsim.model;
 
 public class Dimension 
 {
-    public Point cornerLT; 
-    public Point cornerRT; 
-    public Point cornerRB; 
-    public Point cornerLB; 
+    private int width;
+    private int height;
 
     public Dimension()
     {
-        this.cornerLT = new Point(0,0);
-        this.cornerRT = new Point(0,0);
-        this.cornerRB = new Point(0,0);
-        this.cornerLB = new Point(0,0);
+        width = 0;
+        height = 0;
     }
 
-    public Dimension(Point cornerLT, Point cornerRT, Point cornerRB, Point cornerLB)
+    public Dimension(int height, int width)
     {
-        this.cornerLT = new Point(cornerLT.x, cornerLT.y);
-        this.cornerRT = new Point(cornerRT.x, cornerRT.y);
-        this.cornerRB = new Point(cornerRB.x, cornerRB.y);
-        this.cornerLB = new Point(cornerLB.x, cornerLB.y);
+        this.height = height;
+        this.width = width;
     } 
 
     public int getWidth() 
     {
-        return (int) cornerRT.distance(cornerLT);
+        return width;
     }
 
     public int getHeight() 
     {
-        return (int) cornerRT.distance(cornerRB);
+        return height;
     }
 
     @Override
     public String toString()
     {
-        return "{LT : " + cornerLT.toString() + ", " +
-        "RT : " + cornerRT.toString() + ", " +
-        "RB : " + cornerRB.toString() + ", " +
-        "LB : " + cornerLB.toString() + "}";
+        return "{height : " + height.toString() + ", " +
+        "width : " + width.toString() + "}";
     }
 }

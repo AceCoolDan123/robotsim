@@ -27,37 +27,12 @@ public class Door extends Component
     public Door(Point position, int length, String name, boolean isVertical)
     {
         super(position, new Dimension(), name);
-        int x = position.getxCoordinate();
-        int y = position.getyCoordinate();
  
-        Point cornerRT; 
-        Point cornerRB; 
-        Point cornerLB;
-        Point cornerLT;
+        int width = isVertical ? thickness : length;
+        int height = isVertical ? length : thickness;
 
-        if (isVertical) {
-            shape = (Shape)(new BasicRectangle(thickness, length));
-            
-            cornerRT = new Point(x + thickness / 2, y + length / 2); 
-            cornerRB = new Point(x + thickness / 2, y - length / 2); 
-            cornerLB = new Point(x - thickness / 2, y - length / 2); 
-            cornerLT = new Point(x - thickness / 2, y + length / 2); 
-        }
+        shape = (Shape)(new BasicRectangle(width, height));
         
-        else {
-            shape = (Shape)(new BasicRectangle(length, thickness));
-            
-            cornerRT = new Point(x + length / 2, y + thickness / 2); 
-            cornerRB = new Point(x + length / 2, y - thickness / 2); 
-            cornerLB = new Point(x - length / 2, y - thickness / 2); 
-            cornerLT = new Point(x - length / 2, y + thickness / 2); 
-        }
-
-        dimension.cornerLB = cornerLB;
-        dimension.cornerLT = cornerLT;
-        dimension.cornerRT = cornerRT;
-        dimension.cornerRB = cornerRB;
-
         this.isVertical = isVertical;
         this.isOpened = true;
         this.length = length;

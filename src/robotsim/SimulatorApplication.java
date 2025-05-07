@@ -9,6 +9,7 @@ import robotsim.model.Machine;
 import robotsim.model.Point;
 import robotsim.model.Puck;
 import robotsim.model.Room;
+import robotsim.model.Robot;
 
 import fr.tp.inf112.projects.canvas.model.Canvas;
 import fr.tp.inf112.projects.canvas.view.CanvasViewer;
@@ -30,30 +31,34 @@ public class SimulatorApplication {
 
 
         Room[] rooms = new Room[3];
-        rooms[0] = new Room(leftPoint, createDimension(leftPoint, roomLength, roomLength), 
+        rooms[0] = new Room(leftPoint, new Dimension(roomLength, roomLength), 
                             createSingleArrayHorizontalDoors("DoorRoom0", leftDoorPoint), 
                             createSingleArrayAreaWithOneMachine("AreaRoom0", leftPoint), "Room0");
-        rooms[1] = new Room(centerPoint, createDimension(centerPoint, roomLength, roomLength), 
+        rooms[1] = new Room(centerPoint, new Dimension(roomLength, roomLength), 
                             createSingleArrayHorizontalDoors("DoorRoom1", centerDoorPoint), 
                             createSingleArrayAreaWithOneMachine("AreaRoom1", centerPoint), "Room1");
-        rooms[2] = new Room(rightPoint, createDimension(rightPoint, roomLength, roomLength), 
+        rooms[2] = new Room(rightPoint, new Dimension(roomLength, roomLength), 
                             createSingleArrayHorizontalDoors("DoorRoom2", rightDoorPoint), 
                             createSingleArrayAreaWithOneMachine("AreaRoom2", rightPoint), "Room2");
 
         Factory factory1 = new Factory(
             new Point(0, 0), 
-            createDimension(centerPoint, factoryLength, factoryLength),
+            new Dimension(factoryLength, factoryLength),
             "Factory 1", rooms, 
             createSingleArrayStations("station0", chargingPoint), 
             createSingleArrayPuck(("puck0"), puckPoint));
 
-        factory1.addRobot(leftPoint, createDimension(leftPoint, robotLength, robotLength), "Robot0");
-        factory1.addRobot(centerPoint, createDimension(centerPoint, robotLength, robotLength), "Robot0");
-        factory1.addRobot(rightPoint, createDimension(rightPoint, robotLength, robotLength), "Robot0");
+        factory1.addRobot(leftPoint, new Dimension(robotLength, robotLength), "Robot0");
+        factory1.addRobot(centerPoint, new Dimension(robotLength, robotLength), "Robot0");
+        factory1.addRobot(rightPoint, new Dimension(robotLength, robotLength), "Robot0");
 
-        System.out.println(factory1.getFigures());
+        //System.out.println(factory1.getFigures());
 
-        CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
+        Factory test = new Factory(new Point(50,50), new Dimension(100,100), "factory1", null, null, null);
+        test.addRobot(new Point(50,50), new Dimension(10, 10), "robot1");
+        CanvasViewer testViewer = new CanvasViewer((Canvas)test);
+
+        //CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
     }
 
     private static Point createPoint(float x, float y)
@@ -70,7 +75,7 @@ public class SimulatorApplication {
 
     private static Area[] createSingleArrayAreaWithOneMachine(String name, Point pos)
     {
-        Dimension dimension = createDimension(pos, 100, 100); 
+        Dimension dimension = new Dimension(100, 100); 
         Area[] res = new Area[1];
         Machine[] machines = new Machine[1];
         machines[0] = new Machine(pos, dimension, "name's Machine");
@@ -80,7 +85,7 @@ public class SimulatorApplication {
 
     private static ChargingStation[] createSingleArrayStations(String name, Point pos)
     {
-        Dimension dimension = createDimension(pos, 50, 50);
+        Dimension dimension = new Dimension(50, 50);
         ChargingStation[] res = new ChargingStation[1];
         res[0] = new ChargingStation(pos, dimension, name);
         return res;
@@ -88,19 +93,9 @@ public class SimulatorApplication {
 
     private static Puck[] createSingleArrayPuck(String name, Point pos)
     {
-        Dimension dimension = createDimension(pos, 5, 5);
+        Dimension dimension = new Dimension(5, 5);
         Puck[] res = new Puck[1];
         res[0] = new Puck(pos, dimension, name);
         return res;
-    }
-
-    private static Dimension createDimension(Point center, int height, int width)
-    {
-        return new Dimension(
-            new Point(center.x - width / 2, center.y + height / 2), 
-            new Point(center.x + width / 2, center.y + height / 2), 
-            new Point(center.x + width / 2, center.y - height / 2), 
-            new Point(center.x - width / 2, center.y - height / 2)
-        );
     }
 }

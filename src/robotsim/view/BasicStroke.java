@@ -22,7 +22,7 @@ public class BasicStroke implements Stroke
 
     public BasicStroke()
     {
-        this(BLACK, 0.1, {});
+        this(BLACK, 10, {});
     }
 
     public BasicStroke(Color color, float thickness, float[] dashPattern)
