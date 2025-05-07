@@ -1,5 +1,8 @@
 import java.util.Set;
+import java.util.HashSet;
 
+import fr.tp.inf112.projects.canvas.model.PolygonShape;
+import fr.tp.inf112.projects.canvas.model.Vertex;
 
 public class BasicPolygon implements PolygonShape
 {
@@ -7,7 +10,7 @@ public class BasicPolygon implements PolygonShape
 
     public BasicPolygon()
     {
-        vertices = [];
+        vertices = new HashSet<>();
     }
 
     public BasicPolygon(Set<Vertex> vertices)
@@ -15,7 +18,7 @@ public class BasicPolygon implements PolygonShape
         this.vertices = vertices;
     }
 
-    public addVertex(Vertex vertex)
+    public void addVertex(Vertex vertex)
     {
         vertices.add(vertex);
     }
