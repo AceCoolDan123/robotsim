@@ -2,14 +2,12 @@ package robotsim.model;
 
 import java.util.Arrays;
 
+import robotsim.view.BasicRectangle;
+import robotsim.view.BasicStyle;
+
 public class Area extends Component
 {
     public Machine[] machines;
-
-    /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
-
-    style = DefaultArea;
-    shape = BasicRectangle(dimension.getWidth, dimension.getHeight);
 
 
     
@@ -22,6 +20,10 @@ public class Area extends Component
         {
             this.machines[i] = new Machine(machines[i].position, machines[i].dimension, machines[i].getName());
         }
+
+        /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
+        style = BasicStyle.DefaultArea;
+        shape = (Shape)(new BasicRectangle(dimension.getWidth, dimension.getHeight));
     }
 
     @Override

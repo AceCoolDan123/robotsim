@@ -7,6 +7,14 @@ public class Dimension
     public Point cornerRB; 
     public Point cornerLB; 
 
+    public Dimension()
+    {
+        this.cornerLT = new Point(0,0);
+        this.cornerRT = new Point(0,0);
+        this.cornerRB = new Point(0,0);
+        this.cornerLB = new Point(0,0);
+    }
+
     public Dimension(Point cornerLT, Point cornerRT, Point cornerRB, Point cornerLB)
     {
         this.cornerLT = new Point(cornerLT.x, cornerLT.y);
