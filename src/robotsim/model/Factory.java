@@ -8,6 +8,7 @@ import java.util.Set;
 import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Canvas;
+import fr.tp.inf112.projects.canvas.controller.Observer;
 import fr.tp.inf112.projects.canvas.controller.Observable;
 
 public class Factory extends Component implements Canvas, Observable
@@ -25,6 +26,7 @@ public class Factory extends Component implements Canvas, Observable
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
     private final Set<Observer> observers;
+    boolean isSimulationRunning = false;
 
 
 
@@ -34,7 +36,6 @@ public class Factory extends Component implements Canvas, Observable
 
     public Factory(Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
-        // ??
         super(new Point(0,0), dimension, name);
         robots = new ArrayList<>(10);
 
@@ -74,8 +75,10 @@ public class Factory extends Component implements Canvas, Observable
         }
     }
 
-    public boolean addComponent(Component component ) 
+    public boolean addComponent(Component component) 
     {
+        component.setParentFactory(this);
+
         if (components.add(component)) 
         {
             notifyObservers(); // Notify observers that some data have changed
@@ -120,7 +123,7 @@ public class Factory extends Component implements Canvas, Observable
     }
 
 
-    /* -------------------------- METHODES CANVAS -------------------------- */
+    /* -------------------------- METHODS CANVAS -------------------------- */
 
     public String getId()
     {
@@ -146,7 +149,7 @@ public class Factory extends Component implements Canvas, Observable
         return figures;
     } 
 
-    /* -------------------------- METHODES OBSERVABLE -------------------------- */
+    /* -------------------------- METHODS OBSERVABLE -------------------------- */
 
     @Override
     public boolean addObserver(Observer observer) 
@@ -168,6 +171,33 @@ public class Factory extends Component implements Canvas, Observable
         }
     }
 
-    
+    public void startSimulation()
+    {
+        if (isSimulationRunning) {
+            System.out.println("La simulation est déjà en cours !");
+            return;
+        }
+
+        isSimulationRunning = true;
+        System.out.println("Simulation démarrée.");
+
+    }
+
+    public void stopSimulation()
+    {
+        if (!isSimulationRunning) {
+            System.out.println("Aucune simulation n'est en cours.");
+            return;
+        }
+
+        isSimulationRunning = false;
+        System.out.println("Simulation arrêtée.");
+
+    }
+
+    public boolean isSimulationRunning()
+    {
+        return isSimulationRunning;
+    }
 
 }

@@ -16,6 +16,11 @@ public class Component implements Figure
     protected Shape shape;
     protected Style style;
 
+    /* -------------------------- ATTRIBUTES OBSERVER -------------------------- */
+
+    protected Factory parentFactory;
+
+    
 
     public Component(Point position, Dimension dimension, String name)
     {
@@ -32,7 +37,7 @@ public class Component implements Figure
         this.backgroundColor = backgroundColor;
     }*/
 
-    public String getName()
+    public final String getName()
     {
         return name;
     }
@@ -42,29 +47,34 @@ public class Component implements Figure
         return "[name = " + name + ", position = " + position + ", dimension = " + dimension + "]";
     }
 
-    protected void setStyle(Style style)
+    protected final void setStyle(Style style)
     {
         this.style = style;
     }
 
-    public Point getPosition()
+    public final Point getPosition()
     {
         return position;
     }
 
-    public Dimension getDimension()
+    public final Dimension getDimension()
     {
         return dimension;
     }
 
-    protected void setxCoordinate(float x)
+    protected final void setxCoordinate(float x)
     {
         position.setxCoordinate(x);
     }
 
-    protected void setyCoordinate(float y)
+    protected final void setyCoordinate(float y)
     {
         position.setxCoordinate(y);
+    }
+
+    public final void setParentFactory(Factory factory)
+    {
+        this.parentFactory = factory;
     }
 
     public void behave()
