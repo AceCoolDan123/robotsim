@@ -2,11 +2,15 @@ package robotsim.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Observer;
+import java.util.Set;
+
 import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Canvas;
+import fr.tp.inf112.projects.canvas.controller.Observable;
 
-public class Factory extends Component implements Canvas
+public class Factory extends Component implements Canvas, Observable
 {
     public ArrayList<Robot> robots;
     public Room[] rooms;
@@ -15,12 +19,22 @@ public class Factory extends Component implements Canvas
 
     /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
     
-    private final ArrayList<Figure> figures = new ArrayList();
+    private final ArrayList<Figure> components = new ArrayList();
     private String id = "";
 
-    public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
+    /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
+    
+    private final Set<Observer> observers;
+
+
+
+    /*public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
-        super(position, dimension, name);
+        super(position, dimension, name);*/
+
+    public Factory(Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
+    {
+        super(new Point(0,0), dimension, name);
         robots = new ArrayList<>(10);
 
         if (rooms == null) { 
@@ -30,7 +44,7 @@ public class Factory extends Component implements Canvas
             for (int i = 0; i < rooms.length; i ++)
             {
                 this.rooms[i] = new Room(rooms[i].position, rooms[i].dimension, rooms[i].doors, rooms[i].areas, rooms[i].getName());
-                figures.add(this.rooms[i]);
+                addComponent(this.rooms[i]);
             }
         }
 
@@ -42,7 +56,7 @@ public class Factory extends Component implements Canvas
             for (int i = 0; i < chargingStations.length; i ++)
             {
                 this.chargingStations[i] = new ChargingStation(chargingStations[i].position, chargingStations[i].dimension, chargingStations[i].getName());
-                figures.add(this.chargingStations[i]);
+                addComponent(this.chargingStations[i]);
             }
         }
 
@@ -54,8 +68,16 @@ public class Factory extends Component implements Canvas
             for (int i = 0; i < pucks.length; i ++)
             {
                 this.pucks[i] = new Puck(pucks[i].position, pucks[i].dimension, pucks[i].getName());
-                figures.add(this.pucks[i]);
+                addComponent(this.pucks[i]);
             }
+        }
+    }
+
+    public boolean addComponent(Component component ) 
+    {
+        if (components.add(component)) 
+        {
+            notifyObservers(); // Notify observers that some data have changed
         }
     }
 
@@ -67,7 +89,7 @@ public class Factory extends Component implements Canvas
         }
         Robot new_robot = new Robot(position, dimension, name, 0);
         robots.add(new_robot);
-        figures.add(new_robot);
+        addComponent(new_robot);
         return true;
     }
 
@@ -122,5 +144,29 @@ public class Factory extends Component implements Canvas
     public ArrayList<Figure> getFigures() {
         return figures;
     } 
+
+    /* -------------------------- METHODES OBSERVABLE -------------------------- */
+
+    @Override
+    public boolean addObserver(Observer observer) 
+    {
+        return observers.add(observer);
+    }
+
+    @Override
+    public boolean removeObserver(Observer observer) 
+    {
+        return observers.remove(observer);
+    }
+
+    protected void notifyObservers() 
+    { // To be called every time model data is modified
+        for (final Observer observer : observers) 
+        {
+            observer.modelChanged();
+        }
+    }
+
+    
 
 }

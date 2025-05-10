@@ -42,7 +42,6 @@ public class SimulatorApplication {
                             createSingleArrayAreaWithOneMachine("AreaRoom2", rightPoint), "Room2");
 
         Factory factory1 = new Factory(
-            new Point(0, 0), 
             new Dimension(factoryLength, factoryLength),
             "Factory 1", rooms, 
             createSingleArrayStations("station0", chargingPoint), 
