@@ -17,17 +17,18 @@ import fr.tp.inf112.projects.canvas.view.CanvasViewer;
 public class SimulatorApplication {
     public static void main(String[] args) 
     {
-        int factoryLength = 1000;
-        int roomLength = 300;
-        int robotLength = 10;
-        Point centerPoint = createPoint(0, 0);
-        Point centerDoorPoint = createPoint(0, roomLength / 2);
-        Point leftPoint = createPoint(-500, 0);
-        Point leftDoorPoint = createPoint(-500, roomLength / 2);
-        Point rightPoint = createPoint(500, 0);
-        Point rightDoorPoint = createPoint(500, roomLength / 2);
-        Point chargingPoint = createPoint(0, 400);
-        Point puckPoint = createPoint(0, -400);
+        int factoryLength = 100;
+        int roomLength = 20;
+        int robotLength = 3;
+
+        Point centerPoint = createPoint(factoryLength / 2 - roomLength / 2, factoryLength /2 - roomLength / 2);
+        Point centerDoorPoint = createPoint(factoryLength / 2, factoryLength / 2 - roomLength / 2);
+        Point leftPoint = createPoint(factoryLength / 4 - roomLength / 2, factoryLength / 2 - roomLength / 2);
+        Point leftDoorPoint = createPoint(factoryLength / 4, factoryLength / 2 - roomLength / 2);
+        Point rightPoint = createPoint(3 * factoryLength / 4 - roomLength, factoryLength / 2);
+        Point rightDoorPoint = createPoint(3 * factoryLength / 4, factoryLength / 2 - roomLength / 2);
+        Point chargingPoint = createPoint( 3 * factoryLength / 4, 3 * factoryLength / 4);
+        Point puckPoint = createPoint(factoryLength / 4, factoryLength / 4);
 
 
         Room[] rooms = new Room[3];
@@ -54,11 +55,11 @@ public class SimulatorApplication {
 
         //System.out.println(factory1.getFigures());
 
-        Factory test = new Factory(new Point(50,50), new Dimension(100,100), "factory1", null, null, null);
-        test.addRobot(new Point(50,50), new Dimension(10, 10), "robot1");
-        CanvasViewer testViewer = new CanvasViewer((Canvas)test);
+        //Factory test = new Factory(new Point(50,50), new Dimension(100,100), "factory1", null, null, null);
+        //test.addRobot(new Point(50,50), new Dimension(3, 3), "robot1");
+        //CanvasViewer testViewer = new CanvasViewer((Canvas)test);
 
-        //CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
+        CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
     }
 
     private static Point createPoint(float x, float y)
@@ -69,13 +70,13 @@ public class SimulatorApplication {
     private static Door[] createSingleArrayHorizontalDoors(String name, Point pos)
     {
         Door[] res = new Door[1];
-        res[0] = new Door(pos, 10, name, true);
+        res[0] = new Door(pos, 6, name, true);
         return res;
     }
 
     private static Area[] createSingleArrayAreaWithOneMachine(String name, Point pos)
     {
-        Dimension dimension = new Dimension(100, 100); 
+        Dimension dimension = new Dimension(10, 10); 
         Area[] res = new Area[1];
         Machine[] machines = new Machine[1];
         machines[0] = new Machine(pos, dimension, "name's Machine");
@@ -85,7 +86,7 @@ public class SimulatorApplication {
 
     private static ChargingStation[] createSingleArrayStations(String name, Point pos)
     {
-        Dimension dimension = new Dimension(50, 50);
+        Dimension dimension = new Dimension(10, 10);
         ChargingStation[] res = new ChargingStation[1];
         res[0] = new ChargingStation(pos, dimension, name);
         return res;
@@ -93,7 +94,7 @@ public class SimulatorApplication {
 
     private static Puck[] createSingleArrayPuck(String name, Point pos)
     {
-        Dimension dimension = new Dimension(5, 5);
+        Dimension dimension = new Dimension(2, 2);
         Puck[] res = new Puck[1];
         res[0] = new Puck(pos, dimension, name);
         return res;
