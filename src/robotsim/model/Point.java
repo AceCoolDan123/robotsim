@@ -24,6 +24,16 @@ public class Point implements Vertex {
         return (int) y;
     };
 
+    public void setxCoordinate(float x)
+    {
+        this.x = x;
+    };
+
+    public void setyCoordinate(float y)
+    {
+        this.y = y;
+    };
+
     public float distance(Point point2) 
     {
         int x2 = point2.getxCoordinate();

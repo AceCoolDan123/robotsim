@@ -57,6 +57,22 @@ public class Component implements Figure
         return dimension;
     }
 
+    protected void setxCoordinate(float x)
+    {
+        position.setxCoordinate(x);
+    }
+
+    protected void setyCoordinate(float y)
+    {
+        position.setxCoordinate(y);
+    }
+
+    public void behave()
+    {
+        
+    }
+
+
     /* -------------------------- METHODS FIGURE -------------------------- */
 
 

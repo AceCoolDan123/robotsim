@@ -88,6 +88,14 @@ public class Factory extends Component implements Canvas
         return "Factory [name =" + getName() + ", robots =" + robots + ", rooms = " + Arrays.toString(rooms) + ", chargingStations = " + Arrays.toString(chargingStations) + ", pucks = " + Arrays.toString(pucks) + "]";
     }
 
+    @Override
+    public void behave()
+    {
+        for (ArrayList<Figure> component : figures) {
+            component.behave();
+        }
+    }
+
 
     /* -------------------------- METHODES CANVAS -------------------------- */
 
