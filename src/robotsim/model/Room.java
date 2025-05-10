@@ -23,7 +23,7 @@ public class Room extends Component
         super(position, dimension, name);
 
         setStyle(BasicStyle.DefaultRoom);
-        shape = new BasicRectangle(dimension.getWidth(), dimension.getHeight());
+        shape = (Shape)(new BasicRectangle(dimension.getWidth(), dimension.getHeight()));
 
         this.doors = new Door[doors.length];
         for (int i = 0; i < doors.length; i++) 
