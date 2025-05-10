@@ -34,6 +34,7 @@ public class Factory extends Component implements Canvas, Observable
 
     public Factory(Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
+        // ??
         super(new Point(0,0), dimension, name);
         robots = new ArrayList<>(10);
 
