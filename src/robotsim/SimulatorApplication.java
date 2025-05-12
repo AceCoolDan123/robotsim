@@ -43,7 +43,6 @@ public class SimulatorApplication {
                             createSingleArrayAreaWithOneMachine("AreaRoom2", rightPoint), "Room2");
 
         Factory factory1 = new Factory(
-            new Point(factoryLength / 2, factoryLength / 2), 
             new Dimension(factoryLength, factoryLength),
             "Factory 1", rooms, 
             createSingleArrayStations("station0", chargingPoint), 
@@ -59,7 +58,7 @@ public class SimulatorApplication {
         roomsTest[0] = new Room(centerPoint, new Dimension(roomLength, roomLength), 
                             createSingleArrayHorizontalDoors("DoorRoom0", leftDoorPoint), 
                             createSingleArrayAreaWithOneMachine("AreaRoom0", leftPoint), "Room0");
-        Factory test = new Factory(new Point(50,50), new Dimension(100,100), "factory1", null, null, null);
+        Factory test = new Factory(new Dimension(100,100), "factory1", null, null, null);
         test.addRobot(new Point(50,50), new Dimension(3, 3), "robot1");
         CanvasViewer testViewer = new CanvasViewer((Canvas)test);
 

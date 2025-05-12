@@ -83,6 +83,7 @@ public class Factory extends Component implements Canvas, Observable
         {
             notifyObservers(); // Notify observers that some data have changed
         }
+        return true;
     }
 
     public boolean addRobot(Point position, Dimension dimension, String name)
