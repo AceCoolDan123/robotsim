@@ -1,11 +1,15 @@
 package robotsim.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Observer;
+import java.util.Set;
 
+import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Canvas;
-import fr.tp.inf112.projects.canvas.controller.Observable;
 import fr.tp.inf112.projects.canvas.controller.Observer;
+import fr.tp.inf112.projects.canvas.controller.Observable;
 
 public class Factory extends Component implements Canvas, Observable
 {
@@ -21,7 +25,7 @@ public class Factory extends Component implements Canvas, Observable
 
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
-    private ArrayList<Observer> observers = new ArrayList<Observer>(10); 
+    private Set<Observer> observers;
     boolean isSimulationRunning = false;
 
 
@@ -33,7 +37,6 @@ public class Factory extends Component implements Canvas, Observable
     public Factory(Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
         super(new Point(0,0), dimension, name);
-
         robots = new ArrayList<>(10);
 
         if (rooms == null) { 
@@ -42,9 +45,8 @@ public class Factory extends Component implements Canvas, Observable
             this.rooms = new Room[rooms.length];
             for (int i = 0; i < rooms.length; i ++)
             {
-                this.rooms[i] = new Room(rooms[i].position, rooms[i].dimension, rooms[i].getDoors(), rooms[i].getAreas(), rooms[i].getName());
+                this.rooms[i] = new Room(rooms[i].position, rooms[i].dimension, rooms[i].doors, rooms[i].areas, rooms[i].getName());
                 addComponent(this.rooms[i]);
-                addRoomComponents(this.rooms[i]);
             }
         }
 
@@ -81,38 +83,6 @@ public class Factory extends Component implements Canvas, Observable
         {
             notifyObservers(); // Notify observers that some data have changed
         }
-        return true;
-    }
-
-    private void addRoomComponents(Room room)
-    {
-        Area[] areas = room.getAreas();
-        Door[] doors = room.getDoors();
-
-        if (areas != null)
-        {
-            for (Area area : areas) 
-            {
-                addComponent(area);     
-                addMachines(area.getMachines());
-            }
-        }
-        if (doors != null)
-        {
-            for (Door door : doors) 
-            {
-                addComponent(door);     
-            }
-        }
-    }
-
-    private void addMachines(Machine[] machines)
-    {
-        if (machines == null) { return; }
-        for (Machine machine : machines)
-        {
-            addComponent(machine);
-        }
     }
 
     public boolean addRobot(Point position, Dimension dimension, String name)
@@ -147,7 +117,7 @@ public class Factory extends Component implements Canvas, Observable
     @Override
     public void behave()
     {
-        for (Figure component : figures) {
+        for (ArrayList<Figure> component : figures) {
             component.behave();
         }
     }
@@ -176,7 +146,7 @@ public class Factory extends Component implements Canvas, Observable
     }
 
     public ArrayList<Figure> getFigures() {
-        return components;
+        return figures;
     } 
 
     /* -------------------------- METHODS OBSERVABLE -------------------------- */
@@ -195,10 +165,9 @@ public class Factory extends Component implements Canvas, Observable
 
     protected void notifyObservers() 
     { // To be called every time model data is modified
-        for (Observer observer : observers) 
+        for (final Observer observer : observers) 
         {
-            System.out.println(observer);
-            //observer.modelChanged();
+            observer.modelChanged();
         }
     }
 
