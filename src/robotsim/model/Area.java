@@ -9,7 +9,7 @@ import fr.tp.inf112.projects.canvas.model.Shape;
 
 public class Area extends Component
 {
-    public Machine[] machines;
+    private Machine[] machines;
 
 
     
@@ -32,5 +32,10 @@ public class Area extends Component
     public String toString()
     {
         return "Area " + getBasicPrintInfo() + "\n contains " + Arrays.toString(machines);
+    }
+
+    public Machine[] getMachines()
+    {
+        return machines;
     }
 }

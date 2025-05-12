@@ -1,10 +1,16 @@
 package robotsim.model;
 
+import robotsim.view.BasicRectangle;
+import robotsim.view.BasicStyle;
+
+import fr.tp.inf112.projects.canvas.model.Shape;
+
 public class ChargingStation extends Component
 {
     public ChargingStation(Point position, Dimension dimension, String name)
     {
         super(position, dimension, name);
+        shape = (Shape)(new BasicRectangle(dimension.getWidth(), dimension.getHeight()));
     } 
 
     @Override

@@ -3,6 +3,7 @@ package robotsim.model;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Shape;
+import java.awt.BasicStroke;
 
 
 public class Component implements Figure

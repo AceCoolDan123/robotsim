@@ -13,6 +13,7 @@ import robotsim.model.Robot;
 
 import fr.tp.inf112.projects.canvas.model.Canvas;
 import fr.tp.inf112.projects.canvas.view.CanvasViewer;
+import javax.swing.text.Position;
 
 public class SimulatorApplication {
     public static void main(String[] args) 
@@ -25,7 +26,7 @@ public class SimulatorApplication {
         Point centerDoorPoint = createPoint(factoryLength / 2, factoryLength / 2 - roomLength / 2);
         Point leftPoint = createPoint(factoryLength / 4 - roomLength / 2, factoryLength / 2 - roomLength / 2);
         Point leftDoorPoint = createPoint(factoryLength / 4, factoryLength / 2 - roomLength / 2);
-        Point rightPoint = createPoint(3 * factoryLength / 4 - roomLength, factoryLength / 2);
+        Point rightPoint = createPoint(3 * factoryLength / 4 - roomLength / 2, factoryLength / 2 - roomLength / 2);
         Point rightDoorPoint = createPoint(3 * factoryLength / 4, factoryLength / 2 - roomLength / 2);
         Point chargingPoint = createPoint( 3 * factoryLength / 4, 3 * factoryLength / 4);
         Point puckPoint = createPoint(factoryLength / 4, factoryLength / 4);
@@ -48,21 +49,21 @@ public class SimulatorApplication {
             createSingleArrayStations("station0", chargingPoint), 
             createSingleArrayPuck(("puck0"), puckPoint));
 
-        factory1.addRobot(leftPoint, new Dimension(robotLength, robotLength), "Robot0");
-        factory1.addRobot(centerPoint, new Dimension(robotLength, robotLength), "Robot0");
-        factory1.addRobot(rightPoint, new Dimension(robotLength, robotLength), "Robot0");
+        factory1.addRobot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0");
+        factory1.addRobot(new Point(centerDoorPoint.x, centerDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot1");
+        factory1.addRobot(new Point(rightDoorPoint.x, rightDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot2");
 
         //System.out.println(factory1.getFigures());
 
-        Room[] roomsTest = new Room[1];
-        roomsTest[0] = new Room(centerPoint, new Dimension(roomLength, roomLength), 
-                            createSingleArrayHorizontalDoors("DoorRoom0", leftDoorPoint), 
-                            createSingleArrayAreaWithOneMachine("AreaRoom0", leftPoint), "Room0");
-        Factory test = new Factory(new Dimension(100,100), "factory1", null, null, null);
-        test.addRobot(new Point(50,50), new Dimension(3, 3), "robot1");
-        CanvasViewer testViewer = new CanvasViewer((Canvas)test);
+        //Room[] roomsTest = new Room[1];
+        //roomsTest[0] = new Room(centerPoint, new Dimension(roomLength, roomLength), 
+        //                    createSingleArrayHorizontalDoors("DoorRoom0", leftDoorPoint), 
+        //                    createSingleArrayAreaWithOneMachine("AreaRoom0", leftPoint), "Room0");
+        //Factory test = new Factory(new Dimension(100,100), "factory1", roomsTest, null, null);
+        //test.addRobot(new Point(50,50), new Dimension(3, 3), "robot1");
+        //CanvasViewer testViewer = new CanvasViewer((Canvas)test);
 
-        //CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
+        CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
     }
 
     private static Point createPoint(float x, float y)
@@ -73,17 +74,18 @@ public class SimulatorApplication {
     private static Door[] createSingleArrayHorizontalDoors(String name, Point pos)
     {
         Door[] res = new Door[1];
-        res[0] = new Door(pos, 6, name, true);
+        res[0] = new Door(pos, 6, name, false);
         return res;
     }
 
     private static Area[] createSingleArrayAreaWithOneMachine(String name, Point pos)
     {
-        Dimension dimension = new Dimension(10, 10); 
+        Dimension areaDimension = new Dimension(10, 10); 
+        Dimension machineDimension = new Dimension(5, 5); 
         Area[] res = new Area[1];
         Machine[] machines = new Machine[1];
-        machines[0] = new Machine(pos, dimension, "name's Machine");
-        res[0] = new Area(pos, dimension, machines, name);
+        machines[0] = new Machine(new Point(pos.x + 8,  pos.y + 8), machineDimension, "name's Machine");
+        res[0] = new Area(new Point(pos.x + 20 / 4,  pos.y + 20 / 4), areaDimension, machines, name);
         return res;
     }
 

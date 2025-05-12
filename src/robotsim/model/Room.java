@@ -10,8 +10,8 @@ import fr.tp.inf112.projects.canvas.model.Shape;
 
 public class Room extends Component
 {
-    public Door[] doors;
-    public Area[] areas;
+    private Door[] doors;
+    private Area[] areas;
 
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
 
@@ -34,7 +34,7 @@ public class Room extends Component
         this.areas = new Area[areas.length];
         for (int i = 0; i < areas.length; i++) 
         {
-            this.areas[i] = new Area(areas[i].position, areas[i].dimension, areas[i].machines, areas[i].getName());
+            this.areas[i] = new Area(areas[i].position, areas[i].dimension, areas[i].getMachines(), areas[i].getName());
         }
     }    
 
@@ -42,5 +42,14 @@ public class Room extends Component
     public String toString()
     {
         return "Room " + getBasicPrintInfo() + "\n contains " + Arrays.toString(doors) + "\n contains " + Arrays.toString(areas);
+    }
+
+    public Door[] getDoors()
+    {
+        return doors;
+    }
+    public Area[] getAreas()
+    {
+        return areas;
     }
 }

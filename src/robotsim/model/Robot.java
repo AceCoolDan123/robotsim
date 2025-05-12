@@ -1,7 +1,7 @@
 package robotsim.model;
 
 import java.util.ArrayList;
-import java.util.Array;
+import java.util.Arrays;
 
 import fr.tp.inf112.projects.canvas.model.Shape; 
 import javax.lang.model.util.ElementScanner14;
@@ -18,17 +18,17 @@ public class Robot extends Component
 
     /* -------------------------- BEHAVIORAL ATTRIBUTES -------------------------- */
 
-    private ArrayList<Component> componentsToVisit;
+    private ArrayList<Component> componentsToVisit = new ArrayList<Component>();
     
     //behave method attributes
     private boolean hasArrived = true;
     private int visitedComponentsIdx = 0;
     private Component currentComponent = null;
-    private int length = componentsToVisit.length;
+    private int length = componentsToVisit.size();
 
 
 
-    public Robot(Point position, Dimension dimension, String name, float  speed)
+    public Robot(Point position, Dimension dimension, String name, float speed)
     {
         super(position, dimension, name);
         this.speed = speed;
