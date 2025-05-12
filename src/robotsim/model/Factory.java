@@ -20,12 +20,12 @@ public class Factory extends Component implements Canvas, Observable
 
     /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
     
-    private final ArrayList<Figure> components = new ArrayList();
+    private ArrayList<Figure> components = new ArrayList();
     private String id = "";
 
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
-    private final Set<Observer> observers;
+    private Set<Observer> observers;
     boolean isSimulationRunning = false;
 
 
