@@ -19,6 +19,12 @@ public class Robot extends Component
     /* -------------------------- BEHAVIORAL ATTRIBUTES -------------------------- */
 
     private ArrayList<Component> componentsToVisit;
+    
+    //behave method attributes
+    private boolean hasArrived = true;
+    private int visitedComponentsIdx = 0;
+    private Component currentComponent = null;
+    private int length = componentsToVisit.length;
 
 
 
@@ -73,34 +79,26 @@ public class Robot extends Component
     @Override
     public void behave()
     {
-        boolean hasArrived = true;
-        int length = componentsToVisit.length;
-        int i = 0;
-        Component currentComponent = null;
-
-        while (true)
-        {
-            if (hasArrived) {
-                currentComponent = componentsToVisit.get(i);
-                i = (i+1) % length;
-                hasArrived = false;
-            }
-
-            else 
-            {
-                if (this.getPosition().distance(currentComponent.getPosition()) < globalRobotSpeed*speed);
-                {
-                    move(currentComponent);
-                }
-
-                else
-                {
-                    hasArrived = true;
-                }
-                
-            }
-
+        if (hasArrived) {
+            currentComponent = componentsToVisit.get(visitedComponentsIdx);
+            visitedComponentsIdx = (visitedComponentsIdx+1) % length;
+            hasArrived = false;
         }
+
+        else 
+        {
+            if (this.getPosition().distance(currentComponent.getPosition()) < globalRobotSpeed*speed);
+            {
+                move(currentComponent);
+            }
+
+            else
+            {
+                hasArrived = true;
+            }    
+        }
+
+    
 
     }
 

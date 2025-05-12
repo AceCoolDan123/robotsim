@@ -177,10 +177,21 @@ public class Factory extends Component implements Canvas, Observable
             System.out.println("La simulation est déjà en cours !");
             return;
         }
-
+        
         isSimulationRunning = true;
         System.out.println("Simulation démarrée.");
 
+        while (isSimulationRunning())
+        {
+            behave();
+
+            try {
+                Thread.sleep(200);
+            } 
+            catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     public void stopSimulation()
