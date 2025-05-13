@@ -1,9 +1,10 @@
 package robotsim.view;
 
 import fr.tp.inf112.projects.canvas.model.OvalShape;
+import java.io.Serializable;
 
 
-public class BasicOval implements OvalShape
+public class BasicOval implements OvalShape, Serializable
 {
     private final int width;
     private final int height;

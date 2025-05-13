@@ -1,6 +1,8 @@
 package robotsim.model;
 
-public class Dimension 
+import java.io.Serializable;
+
+public class Dimension implements Serializable
 {
     private int width;
     private int height;

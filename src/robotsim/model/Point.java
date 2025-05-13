@@ -1,8 +1,10 @@
 package robotsim.model;
 import static java.lang.Math.sqrt;
 import fr.tp.inf112.projects.canvas.model.Vertex;
+import java.io.Serializable;
 
-public class Point implements Vertex {
+public class Point implements Vertex, Serializable
+{
 
     public float x;
     public float y;

@@ -1,13 +1,13 @@
 package robotsim.view;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 import fr.tp.inf112.projects.canvas.model.Stroke;
 import fr.tp.inf112.projects.canvas.model.Color;
 import fr.tp.inf112.projects.canvas.model.impl.RGBColor;
 
-
-public class BasicStroke implements Stroke
+public class BasicStroke implements Stroke, Serializable
 {
     private Color color;
     private float thickness;
@@ -15,7 +15,7 @@ public class BasicStroke implements Stroke
 
     public static final Stroke TRAITPLEINFIN = new BasicStroke();
 
-    public static final Stroke TRAITPOINTILLEFIN = new BasicStroke(BLACK, 0.1, {0.1, 0.1});
+    public static final Stroke TRAITPOINTILLEFIN = new BasicStroke(BLACK, 0.1, {10, 10});
 
     public static final Stroke TRAITPLEINEPAIS = new BasicStroke(BLACK, 0.5, {});
 
@@ -42,7 +42,7 @@ public class BasicStroke implements Stroke
         return thickness;
     }
 
-    public float getDashPattern()
+    public float[] getDashPattern()
     {
         return dashPattern;
     }

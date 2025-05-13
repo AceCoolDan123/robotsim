@@ -3,10 +3,15 @@ package robotsim.model;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Shape;
+import robotsim.view.BasicStyle.DefaultRobot;
+
+import static robotsim.view.BasicStyle.DefaultRobot;
+
 import java.awt.BasicStroke;
+import java.io.Serializable;
 
 
-public class Component implements Figure
+public class Component implements Figure, Serializable
 {
     protected Point position;
     protected Dimension dimension;
@@ -15,7 +20,7 @@ public class Component implements Figure
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
 
     protected Shape shape;
-    protected Style style;
+    public Style style;
 
     /* -------------------------- ATTRIBUTES OBSERVER -------------------------- */
 
@@ -48,7 +53,7 @@ public class Component implements Figure
         return "[name = " + name + ", position = " + position + ", dimension = " + dimension + "]";
     }
 
-    protected final void setStyle(Style style)
+    protected void setStyle(Style style)
     {
         this.style = style;
     }
@@ -99,7 +104,8 @@ public class Component implements Figure
 
     public Style getStyle()
     {
-        return style;
+        return DefaultRobot;
+        //return this.style;
     }
     
     public Shape getShape()

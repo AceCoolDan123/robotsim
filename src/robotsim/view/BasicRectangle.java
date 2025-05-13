@@ -1,8 +1,9 @@
 package robotsim.view;
 
 import fr.tp.inf112.projects.canvas.model.RectangleShape;
+import java.io.Serializable;
 
-public class BasicRectangle implements RectangleShape
+public class BasicRectangle implements RectangleShape, Serializable
 {
     private final int width;
     private final int height;

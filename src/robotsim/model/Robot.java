@@ -33,7 +33,13 @@ public class Robot extends Component
         super(position, dimension, name);
         this.speed = speed;
         shape = (Shape)(new BasicOval(dimension.getWidth(), dimension.getHeight()));
-        this.setStyle(DefaultRobot);
+        style = DefaultRobot;
+
+        System.out.println("Construction d'un robot : ");
+        System.out.println("Style utilisé : " + style);
+        System.out.println("Couleur : " + style.getBackgroundColor());
+
+ 
         componentsToVisit = new ArrayList<Component>();
     }
 

@@ -62,6 +62,12 @@ public class SimulatorApplication {
         //Factory test = new Factory(new Dimension(100,100), "factory1", roomsTest, null, null);
         //test.addRobot(new Point(50,50), new Dimension(3, 3), "robot1");
         //CanvasViewer testViewer = new CanvasViewer((Canvas)test);
+        System.out.println("[DEBUG] Main lancé");
+
+        Robot robotTest = new Robot(new Point(0,0), new Dimension(robotLength, robotLength), "frrrrr", 1000);
+
+        System.out.println("Style utilisé : " + robotTest.getStyle());
+        System.out.println("Couleur : " + robotTest.getStyle().getBackgroundColor());
 
         CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
     }
