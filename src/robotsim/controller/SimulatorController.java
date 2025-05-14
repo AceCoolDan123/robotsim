@@ -40,10 +40,10 @@ public class SimulatorController implements CanvasViewerController
         this.factoryModel = canvasModel;
     }
 	
-	/*public CanvasPersistenceManager getPersistenceManager()
+	public CanvasPersistenceManager getPersistenceManager()
     {
-
-    }*/
+        return null;
+    }
 	
     @Override
 	public void startAnimation()

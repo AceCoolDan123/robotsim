@@ -11,6 +11,8 @@ import robotsim.model.Puck;
 import robotsim.model.Room;
 import robotsim.model.Robot;
 
+import robotsim.controller.SimulatorController;
+
 import fr.tp.inf112.projects.canvas.model.Canvas;
 import fr.tp.inf112.projects.canvas.view.CanvasViewer;
 import javax.swing.text.Position;
@@ -62,14 +64,19 @@ public class SimulatorApplication {
         //Factory test = new Factory(new Dimension(100,100), "factory1", roomsTest, null, null);
         //test.addRobot(new Point(50,50), new Dimension(3, 3), "robot1");
         //CanvasViewer testViewer = new CanvasViewer((Canvas)test);
+<<<<<<< HEAD
         System.out.println("[DEBUG] Main lancé");
 
         Robot robotTest = new Robot(new Point(0,0), new Dimension(robotLength, robotLength), "frrrrr", 1000);
 
         System.out.println("Style utilisé : " + robotTest.getStyle());
         System.out.println("Couleur : " + robotTest.getStyle().getBackgroundColor());
+=======
+        
+        SimulatorController controller = new SimulatorController(factory1);
+>>>>>>> 2abf360 (SimulatorController deleted)
 
-        CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
+        CanvasViewer canvasViewer = new CanvasViewer(controller);
     }
 
     private static Point createPoint(float x, float y)

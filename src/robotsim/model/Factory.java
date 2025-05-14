@@ -2,7 +2,6 @@ package robotsim.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Observer;
 import java.util.Set;
 
 import fr.tp.inf112.projects.canvas.model.Style;
@@ -45,7 +44,7 @@ public class Factory extends Component implements Canvas, Observable
             this.rooms = new Room[rooms.length];
             for (int i = 0; i < rooms.length; i ++)
             {
-                this.rooms[i] = new Room(rooms[i].position, rooms[i].dimension, rooms[i].doors, rooms[i].areas, rooms[i].getName());
+                this.rooms[i] = new Room(rooms[i].position, rooms[i].dimension, rooms[i].getDoors(), rooms[i].getAreas(), rooms[i].getName());
                 addComponent(this.rooms[i]);
             }
         }
@@ -83,6 +82,8 @@ public class Factory extends Component implements Canvas, Observable
         {
             notifyObservers(); // Notify observers that some data have changed
         }
+
+        return true;
     }
 
     public boolean addRobot(Point position, Dimension dimension, String name)
@@ -164,7 +165,9 @@ public class Factory extends Component implements Canvas, Observable
     }
 
     protected void notifyObservers() 
-    { // To be called every time model data is modified
+    { 
+        if (observers == null) { return; }
+        // To be called every time model data is modified
         for (final Observer observer : observers) 
         {
             observer.modelChanged();
