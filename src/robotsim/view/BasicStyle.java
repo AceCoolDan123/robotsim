@@ -14,13 +14,13 @@ public class BasicStyle implements Style, Serializable
 
     public static final Style DefaultRobot = new BasicStyle(RGBColor.PINK, BasicStroke.TRAITPLEINFIN);
 
-    public static final Style DefaultRoom = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPLEINFIN);
+    public static final Style DefaultRoom = new BasicStyle(RGBColor.LIGHT_GRAY, BasicStroke.TRAITPLEINFIN);
 
-    public static final Style DefaultArea = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPOINTILLEFIN);
+    public static final Style DefaultArea = new BasicStyle(RGBColor.LIGHT_GRAY, BasicStroke.TRAITPOINTILLEFIN);
 
-    public static final Style DefaultMachine = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPLEINFIN);
+    public static final Style DefaultMachine = new BasicStyle(RGBColor.DARK_GRAY, BasicStroke.TRAITPLEINFIN);
 
-    public static final Style DefaultChargingStation = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPOINTILLEFIN);
+    public static final Style DefaultChargingStation = new BasicStyle(RGBColor.GREEN, BasicStroke.TRAITPOINTILLEFIN);
 
     public static final Style DefaultPuck = new BasicStyle(RGBColor.GREEN, BasicStroke.TRAITPLEINFIN);
 
