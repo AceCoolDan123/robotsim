@@ -10,6 +10,7 @@ import javax.print.attribute.standard.Destination;
 
 import robotsim.view.BasicOval;
 import robotsim.view.BasicStyle;
+import robotsim.view.BasicStroke;
 
 
 public class Robot extends Component
@@ -35,11 +36,6 @@ public class Robot extends Component
         this.speed = speed;
         shape = (Shape)(new BasicOval(dimension.getWidth(), dimension.getHeight()));
         style = BasicStyle.DefaultRobot; 
-
-        System.out.println("Construction d'un robot : ");
-        System.out.println("Style utilisé : " + style);
-        System.out.println("Couleur : " + style.getBackgroundColor());
-
  
         componentsToVisit = new ArrayList<Component>();
     }

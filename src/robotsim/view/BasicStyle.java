@@ -1,6 +1,5 @@
 package robotsim.view;
 
-import robotsim.view.BasicStroke;
 
 import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Stroke;
@@ -23,7 +22,7 @@ public class BasicStyle implements Style, Serializable
 
     public static final Style DefaultChargingStation = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPOINTILLEFIN);
 
-    public static final Style DefaultPuck = new BasicStyle(RGBColor.GREEN, BasicStroke.TRAINPLEINFIN);
+    public static final Style DefaultPuck = new BasicStyle(RGBColor.GREEN, BasicStroke.TRAITPLEINFIN);
 
     public static final Style DefaultOpenedDoor = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPLEINEPAIS);
     

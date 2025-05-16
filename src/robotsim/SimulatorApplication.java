@@ -66,10 +66,6 @@ public class SimulatorApplication {
         //CanvasViewer testViewer = new CanvasViewer((Canvas)test);
         //System.out.println("[DEBUG] Main lancé");
 
-        Robot robotTest = new Robot(new Point(0,0), new Dimension(robotLength, robotLength), "frrrrr", 1000);
-
-        System.out.println("Style utilisé : " + robotTest.getStyle());
-        System.out.println("Couleur : " + robotTest.getStyle().getBackgroundColor());
 
         CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
     }
