@@ -33,6 +33,9 @@ public class SimulatorApplication {
         Point chargingPoint = createPoint( 3 * factoryLength / 4, 3 * factoryLength / 4);
         Point puckPoint = createPoint(factoryLength / 4, factoryLength / 4);
 
+        Factory factory1 = new Factory(
+            new Dimension(factoryLength, factoryLength),
+            "Factory 1");
 
         Room[] rooms = new Room[3];
         rooms[0] = new Room(leftPoint, new Dimension(roomLength, roomLength), 
@@ -45,15 +48,13 @@ public class SimulatorApplication {
                             createSingleArrayHorizontalDoors("DoorRoom2", rightDoorPoint), 
                             createSingleArrayAreaWithOneMachine("AreaRoom2", rightPoint), "Room2");
 
-        Factory factory1 = new Factory(
-            new Dimension(factoryLength, factoryLength),
-            "Factory 1", rooms, 
-            createSingleArrayStations("station0", chargingPoint), 
-            createSingleArrayPuck(("puck0"), puckPoint));
+        for (Room room : rooms){
+            factory1.addComponent(room);
+        }
 
-        factory1.addRobot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0");
-        factory1.addRobot(new Point(centerDoorPoint.x, centerDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot1");
-        factory1.addRobot(new Point(rightDoorPoint.x, rightDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot2");
+        factory1.addComponent(new Robot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0", (float)2));
+        factory1.addComponent(new Robot(new Point(centerDoorPoint.x, centerDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot1", (float)1));
+        factory1.addComponent(new Robot(new Point(rightDoorPoint.x, rightDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot2", (float)1000));
 
         //System.out.println(factory1.getFigures());
 
@@ -64,7 +65,7 @@ public class SimulatorApplication {
         //Factory test = new Factory(new Dimension(100,100), "factory1", roomsTest, null, null);
         //test.addRobot(new Point(50,50), new Dimension(3, 3), "robot1");
         //CanvasViewer testViewer = new CanvasViewer((Canvas)test);
-        //System.out.println("[DEBUG] Main lancé");
+        //System.out.println("factory1.figures : " + factory1.getFigures());
 
 
         CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);

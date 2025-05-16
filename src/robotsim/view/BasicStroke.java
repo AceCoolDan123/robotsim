@@ -15,14 +15,14 @@ public class BasicStroke implements Stroke, Serializable
 
     public static final Stroke TRAITPLEINFIN = new BasicStroke();
 
-    public static final Stroke TRAITPOINTILLEFIN = new BasicStroke(RGBColor.BLACK, (float)1, new float[]{(float)10.5, (float)10.5});
+    public static final Stroke TRAITPOINTILLEFIN = new BasicStroke(RGBColor.BLACK, (float)2, new float[]{(float)17, (float)7});
 
-    public static final Stroke TRAITPLEINEPAIS = new BasicStroke(RGBColor.BLACK, (float)5, new float[]{(float)1});
+    public static final Stroke TRAITPLEINEPAIS = new BasicStroke(RGBColor.BLACK, (float)5, new float[]{(float)1000});
 
 
     public BasicStroke()
     {
-        this(RGBColor.BLACK, 1, new float[]{1});
+        this(RGBColor.BLACK, 2, new float[]{1000});
     }
 
     public BasicStroke(Color color, float thickness, float[] dashPattern)

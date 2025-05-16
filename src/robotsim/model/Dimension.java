@@ -32,7 +32,7 @@ public class Dimension implements Serializable
     @Override
     public String toString()
     {
-        return "{height : " + height.toString() + ", " +
-        "width : " + width.toString() + "}";
+        return "{height : " + height + ", " +
+        "width : " + width + "}";
     }
 }

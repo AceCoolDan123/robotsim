@@ -12,10 +12,10 @@ import fr.tp.inf112.projects.canvas.controller.Observable;
 
 public class Factory extends Component implements Canvas, Observable
 {
-    public ArrayList<Robot> robots;
+    /*public ArrayList<Robot> robots;
     public Room[] rooms;
     public ChargingStation[] chargingStations;
-    public Puck[] pucks;
+    public Puck[] pucks; */
 
     /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
     
@@ -25,14 +25,11 @@ public class Factory extends Component implements Canvas, Observable
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
     private Set<Observer> observers;
-    boolean isSimulationRunning = false;
+    private boolean isSimulationRunning = false;
 
 
 
-    /*public Factory(Point position, Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
-    {
-        super(position, dimension, name);*/
-
+    /*
     public Factory(Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
     {
         super(new Point(0,0), dimension, name);
@@ -72,6 +69,47 @@ public class Factory extends Component implements Canvas, Observable
                 addComponent(this.pucks[i]);
             }
         }
+    }*/
+
+    public Factory(Dimension dimension, String name)
+    {
+        super(new Point(0,0), dimension, name);
+    }
+
+    public boolean addComponent(Room room) 
+    {
+        room.setParentFactory(this);
+
+        if (!components.add(room)){
+            return false;
+        }
+
+        for (Door door : room.getDoors()){
+            addComponent(door);
+        }
+        
+        for (Area area : room.getAreas()){
+            addComponent(area);
+        }
+
+        notifyObservers();
+        return true;
+    }
+    
+    public boolean addComponent(Area area) 
+    {
+        area.setParentFactory(this);
+
+        if (!components.add(area)){
+            return false;
+        }
+
+        for (Machine machine : area.getMachines()){
+            addComponent(machine);
+        }
+        
+        notifyObservers();
+        return true;
     }
 
     public boolean addComponent(Component component) 
@@ -80,12 +118,13 @@ public class Factory extends Component implements Canvas, Observable
 
         if (components.add(component)) 
         {
-            notifyObservers(); // Notify observers that some data have changed
+            notifyObservers(); 
+            return true;
         }
 
-        return true;
+        return false;
     }
-
+/* 
     public boolean addRobot(Point position, Dimension dimension, String name)
     {
         if (!checkRobotName(name))
@@ -108,7 +147,7 @@ public class Factory extends Component implements Canvas, Observable
         }
         return true;
     }
-
+*/
     @Override
     public String toString()
     {

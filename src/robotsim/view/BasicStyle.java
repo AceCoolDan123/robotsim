@@ -49,7 +49,6 @@ public class BasicStyle implements Style, Serializable
     @Override
     public Color getBackgroundColor()
     {
-        System.out.println("[DEBUG] getBackgroundColor() appelé pour : " + backgroundColor);
         return backgroundColor;
     }
 
