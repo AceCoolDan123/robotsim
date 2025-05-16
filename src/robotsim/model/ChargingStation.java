@@ -10,6 +10,7 @@ public class ChargingStation extends Component
     public ChargingStation(Point position, Dimension dimension, String name)
     {
         super(position, dimension, name);
+        style = BasicStyle.DefaultChargingStation;
         shape = (Shape)(new BasicRectangle(dimension.getWidth(), dimension.getHeight()));
     } 
 

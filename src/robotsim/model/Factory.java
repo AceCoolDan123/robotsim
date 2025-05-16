@@ -147,7 +147,7 @@ public class Factory extends Component implements Canvas, Observable
     }
 
     public ArrayList<Figure> getFigures() {
-        return figures;
+        return components;
     } 
 
     /* -------------------------- METHODS OBSERVABLE -------------------------- */

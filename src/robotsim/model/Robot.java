@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import fr.tp.inf112.projects.canvas.model.Shape; 
+
 import javax.lang.model.util.ElementScanner14;
 import javax.print.attribute.standard.Destination;
 
 import robotsim.view.BasicOval;
-import static robotsim.view.BasicStyle.DefaultRobot;
+import robotsim.view.BasicStyle;
 
 
 public class Robot extends Component
@@ -33,7 +34,7 @@ public class Robot extends Component
         super(position, dimension, name);
         this.speed = speed;
         shape = (Shape)(new BasicOval(dimension.getWidth(), dimension.getHeight()));
-        style = DefaultRobot;
+        style = BasicStyle.DefaultRobot; 
 
         System.out.println("Construction d'un robot : ");
         System.out.println("Style utilisé : " + style);

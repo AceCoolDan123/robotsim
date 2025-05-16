@@ -10,7 +10,7 @@ public class Machine extends Component
     public Machine(Point position, Dimension dimension, String name)    
     {
         super(position, dimension, name);
-        setStyle(BasicStyle.DefaultRoom);
+        style = BasicStyle.DefaultMachine;
         shape = (Shape)(new BasicRectangle(dimension.getWidth(), dimension.getHeight()));
     }
 

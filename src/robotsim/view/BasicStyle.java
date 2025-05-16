@@ -19,6 +19,12 @@ public class BasicStyle implements Style, Serializable
 
     public static final Style DefaultArea = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPOINTILLEFIN);
 
+    public static final Style DefaultMachine = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPLEINFIN);
+
+    public static final Style DefaultChargingStation = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPOINTILLEFIN);
+
+    public static final Style DefaultPuck = new BasicStyle(RGBColor.GREEN, BasicStroke.TRAINPLEINFIN);
+
     public static final Style DefaultOpenedDoor = new BasicStyle(RGBColor.WHITE, BasicStroke.TRAITPLEINEPAIS);
     
     public static final Style DefaultClosedDoor = new BasicStyle(RGBColor.BLACK, BasicStroke.TRAITPLEINEPAIS);

@@ -22,7 +22,7 @@ public class Room extends Component
     {
         super(position, dimension, name);
 
-        setStyle(BasicStyle.DefaultRoom);
+        style = BasicStyle.DefaultRoom;
         shape = (Shape)(new BasicRectangle(dimension.getWidth(), dimension.getHeight()));
 
         this.doors = new Door[doors.length];

@@ -20,7 +20,7 @@ public class Component implements Figure, Serializable
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
 
     protected Shape shape;
-    public Style style;
+    protected Style style;
 
     /* -------------------------- ATTRIBUTES OBSERVER -------------------------- */
 
@@ -51,11 +51,6 @@ public class Component implements Figure, Serializable
     public String getBasicPrintInfo()
     {
         return "[name = " + name + ", position = " + position + ", dimension = " + dimension + "]";
-    }
-
-    protected void setStyle(Style style)
-    {
-        this.style = style;
     }
 
     public final Point getPosition()
@@ -104,8 +99,8 @@ public class Component implements Figure, Serializable
 
     public Style getStyle()
     {
-        return DefaultRobot;
-        //return this.style;
+        //return DefaultRobot;
+        return this.style;
     }
     
     public Shape getShape()
