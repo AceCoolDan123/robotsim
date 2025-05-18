@@ -19,12 +19,13 @@ public class Factory extends Component implements Canvas, Observable
 
     /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
     
-    private ArrayList<Figure> components = new ArrayList();
+    private ArrayList<Component> components = new ArrayList<Component>();
+    private ArrayList<Figure> figures = new ArrayList<Figure>();
     private String id = "";
 
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
-    private Set<Observer> observers;
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
     private boolean isSimulationRunning = false;
 
 
@@ -83,6 +84,7 @@ public class Factory extends Component implements Canvas, Observable
         if (!components.add(room)){
             return false;
         }
+        figures.add((Figure)room);
 
         for (Door door : room.getDoors()){
             addComponent(door);
@@ -104,6 +106,8 @@ public class Factory extends Component implements Canvas, Observable
             return false;
         }
 
+        figures.add((Figure)area);
+
         for (Machine machine : area.getMachines()){
             addComponent(machine);
         }
@@ -119,6 +123,7 @@ public class Factory extends Component implements Canvas, Observable
         if (components.add(component)) 
         {
             notifyObservers(); 
+            figures.add((Figure)component);
             return true;
         }
 
@@ -157,7 +162,8 @@ public class Factory extends Component implements Canvas, Observable
     @Override
     public void behave()
     {
-        for (ArrayList<Figure> component : figures) {
+        for (Component component : components) 
+        {
             component.behave();
         }
     }
@@ -186,7 +192,7 @@ public class Factory extends Component implements Canvas, Observable
     }
 
     public ArrayList<Figure> getFigures() {
-        return components;
+        return (ArrayList<Figure>)components;
     } 
 
     /* -------------------------- METHODS OBSERVABLE -------------------------- */

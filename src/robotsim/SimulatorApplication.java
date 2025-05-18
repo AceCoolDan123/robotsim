@@ -67,8 +67,9 @@ public class SimulatorApplication {
         //CanvasViewer testViewer = new CanvasViewer((Canvas)test);
         //System.out.println("factory1.figures : " + factory1.getFigures());
 
+        SimulatorController controller = new SimulatorController(factory1);
 
-        CanvasViewer canvasViewer = new CanvasViewer((Canvas)factory1);
+        CanvasViewer canvasViewer = new CanvasViewer(controller);
     }
 
     private static Point createPoint(float x, float y)

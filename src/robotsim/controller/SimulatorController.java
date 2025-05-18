@@ -12,10 +12,12 @@ public class SimulatorController implements CanvasViewerController
 {
 
     private final Factory factoryModel;
+    private Canvas canvasModel;
 
     public SimulatorController(Factory factoryModel)
     {
         this.factoryModel = factoryModel;
+        this.canvasModel = (Canvas)factoryModel;
     }
 
     @Override
@@ -32,12 +34,12 @@ public class SimulatorController implements CanvasViewerController
 
     public final Canvas getCanvas()
     {
-        return factoryModel;
+        return canvasModel;
     }
 	
 	public void setCanvas(Canvas canvasModel)
     {
-        this.factoryModel = canvasModel;
+        this.canvasModel = canvasModel;
     }
 	
 	public CanvasPersistenceManager getPersistenceManager()
@@ -62,6 +64,4 @@ public class SimulatorController implements CanvasViewerController
     {
         return factoryModel.isSimulationRunning();
     }
-
-
 }
