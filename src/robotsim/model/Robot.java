@@ -16,7 +16,7 @@ import robotsim.view.BasicStroke;
 public class Robot extends Component
 {
     private final float speed;
-    private final static double globalRobotSpeed = 1;
+    private final static double globalRobotSpeed = 10;
 
     /* -------------------------- BEHAVIORAL ATTRIBUTES -------------------------- */
 
@@ -52,7 +52,6 @@ public class Robot extends Component
 
     public void move(Component component)
     {
-        System.out.println(getName() + ": " + position.toString());
         int destinationX = component.getxCoordinate();
         int destinationY = component.getyCoordinate();
         float distance = this.getPosition().distance(component.getPosition());
@@ -67,19 +66,27 @@ public class Robot extends Component
         if((destinationX - newX)*dx < 0)
         {
             this.setxCoordinate((float) destinationX);
+            System.out.println("flop type 1.1");
         }
         else
         {
-            this.setxCoordinate((float) (x + (dx/distance)*globalRobotSpeed*speed));
+            this.setxCoordinate(newX);
+            System.out.println("flop type 1.2");
         }
         if((destinationY - newY)*dy < 0)
         {
             this.setyCoordinate((float) destinationY);
+            System.out.println("flop type 2.1");
+
         }
         else
         {
-            this.setyCoordinate((float) (y + (dy/distance)*globalRobotSpeed*speed));
+            this.setyCoordinate(newY);
+            System.out.println("flop type 2.2");
         }
+
+        System.out.println(getName() + ": " + position.toString() + "\n(newX, newY) = (" + newX +"," + newY + ")");
+        
     }
 
     @Override
@@ -89,6 +96,7 @@ public class Robot extends Component
         {
             currentComponent = componentsToVisit.get(visitedComponentsIdx);
             visitedComponentsIdx = (visitedComponentsIdx+1) % (componentsToVisit.size());
+            System.out.println("visited component changed ! currentIdx : "+visitedComponentsIdx);
             hasArrived = false;
         } 
         else 

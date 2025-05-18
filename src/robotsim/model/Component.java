@@ -73,7 +73,7 @@ public class Component implements Figure, Serializable
 
     protected final void setyCoordinate(float y)
     {
-        position.setxCoordinate(y);
+        position.setyCoordinate(y);
     }
 
     public final void setParentFactory(Factory factory)
