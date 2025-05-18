@@ -10,71 +10,34 @@ import fr.tp.inf112.projects.canvas.model.Canvas;
 import fr.tp.inf112.projects.canvas.controller.Observer;
 import fr.tp.inf112.projects.canvas.controller.Observable;
 
+import fr.tp.inf112.projects.graph.impl.GridGraph;
+import fr.tp.inf112.projects.graph.impl.GridVertex;
+import fr.tp.inf112.projects.graph.impl.GridEdge;
+
 public class Factory extends Component implements Canvas, Observable
 {
-    /*public ArrayList<Robot> robots;
-    public Room[] rooms;
-    public ChargingStation[] chargingStations;
-    public Puck[] pucks; */
-
     /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
     
     private ArrayList<Component> components = new ArrayList<Component>();
     private ArrayList<Figure> figures = new ArrayList<Figure>();
     private String id = "";
+    private GridGraph graph = new GridGraph();
 
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private boolean isSimulationRunning = false;
 
-
-
-    /*
-    public Factory(Dimension dimension, String name, Room[] rooms, ChargingStation[] chargingStations, Puck[] pucks)
-    {
-        super(new Point(0,0), dimension, name);
-        robots = new ArrayList<>(10);
-
-        if (rooms == null) { 
-            rooms = new Room[1];
-        } else {
-            this.rooms = new Room[rooms.length];
-            for (int i = 0; i < rooms.length; i ++)
-            {
-                this.rooms[i] = new Room(rooms[i].position, rooms[i].dimension, rooms[i].getDoors(), rooms[i].getAreas(), rooms[i].getName());
-                addComponent(this.rooms[i]);
-            }
-        }
-
-        if (chargingStations == null)
-        {
-            chargingStations = new ChargingStation[1];
-        } else {
-            this.chargingStations = new ChargingStation[chargingStations.length];
-            for (int i = 0; i < chargingStations.length; i ++)
-            {
-                this.chargingStations[i] = new ChargingStation(chargingStations[i].position, chargingStations[i].dimension, chargingStations[i].getName());
-                addComponent(this.chargingStations[i]);
-            }
-        }
-
-        if (pucks == null)
-        {
-            pucks = new Puck[1];
-        } else {
-            this.pucks = new Puck[pucks.length];
-            for (int i = 0; i < pucks.length; i ++)
-            {
-                this.pucks[i] = new Puck(pucks[i].position, pucks[i].dimension, pucks[i].getName());
-                addComponent(this.pucks[i]);
-            }
-        }
-    }*/
-
     public Factory(Dimension dimension, String name)
     {
         super(new Point(0,0), dimension, name);
+        for (int i = 0; i < dimension.getWidth(); i++)
+        {
+            for (int j = 0; j < dimension.getWidth(); j++)
+            {
+                //graph.addVertex(new GridVertex());
+            }
+        }
     }
 
     public boolean addComponent(Room room) 

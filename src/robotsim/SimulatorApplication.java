@@ -51,6 +51,10 @@ public class SimulatorApplication {
         for (Room room : rooms){
             factory1.addComponent(room);
         }
+
+        factory1.addComponent(new ChargingStation(chargingPoint, new Dimension(10, 10), "Charging Station"));
+        factory1.addComponent(new Puck(puckPoint, new Dimension(2, 2), "Puck"));
+
         Robot robot1 = new Robot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1);
         robot1.addComponentToVisit(rooms[2]);
         robot1.addComponentToVisit(rooms[0]);
@@ -66,6 +70,7 @@ public class SimulatorApplication {
         robot3.addComponentToVisit(rooms[1]);
         robot3.addComponentToVisit(rooms[0]);
         factory1.addComponent(robot3);
+
 
         //System.out.println(factory1.getFigures());
 
@@ -105,22 +110,6 @@ public class SimulatorApplication {
         Machine[] machines = new Machine[1];
         machines[0] = new Machine(new Point(pos.x + 8,  pos.y + 8), machineDimension, "name's Machine");
         res[0] = new Area(new Point(pos.x + 20 / 4,  pos.y + 20 / 4), areaDimension, machines, name);
-        return res;
-    }
-
-    private static ChargingStation[] createSingleArrayStations(String name, Point pos)
-    {
-        Dimension dimension = new Dimension(10, 10);
-        ChargingStation[] res = new ChargingStation[1];
-        res[0] = new ChargingStation(pos, dimension, name);
-        return res;
-    }
-
-    private static Puck[] createSingleArrayPuck(String name, Point pos)
-    {
-        Dimension dimension = new Dimension(2, 2);
-        Puck[] res = new Puck[1];
-        res[0] = new Puck(pos, dimension, name);
         return res;
     }
 }
