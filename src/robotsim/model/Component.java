@@ -105,6 +105,16 @@ public class Component implements Figure, Serializable
         return (int)position.y;
     }
 
+    protected float getTruexCoordinate()
+    {
+        return position.x;
+    }
+
+    protected float getTrueyCoordinate()
+    {
+        return position.y;
+    }
+
     public Style getStyle()
     {
         //return DefaultRobot;

@@ -16,7 +16,7 @@ import robotsim.view.BasicStroke;
 public class Robot extends Component
 {
     private final float speed;
-    private final static double globalRobotSpeed = 10;
+    private final static double globalRobotSpeed = 1;
 
     /* -------------------------- BEHAVIORAL ATTRIBUTES -------------------------- */
 
@@ -26,6 +26,7 @@ public class Robot extends Component
     private boolean hasArrived = true;
     private int visitedComponentsIdx = 0;
     private Component currentComponent = null;
+    private float epsilon = (float) 0.4;
 
     public Robot(Point position, Dimension dimension, String name, float speed)
     {
@@ -52,17 +53,20 @@ public class Robot extends Component
 
     public void move(Component component)
     {
-        int destinationX = component.getxCoordinate();
-        int destinationY = component.getyCoordinate();
+        float destinationX = component.getTruexCoordinate();
+        float destinationY = component.getTrueyCoordinate();
         float distance = this.getPosition().distance(component.getPosition());
-        int x = this.getxCoordinate();
-        int y = this.getyCoordinate();
-        int dx = destinationX - x;
-        int dy = destinationY - y;
+        float x = this.getTruexCoordinate();
+        float y = this.getTrueyCoordinate();
+        float dx = destinationX - x;
+        float dy = destinationY - y;
 
         float newX = (float) (x + (dx/distance)*globalRobotSpeed*speed);
         float newY = (float) (y + (dy/distance)*globalRobotSpeed*speed);
         
+        System.out.println(getName() + ": " + position.toString() + "\n(newX, newY) = (" + newX +"," + newY + ")");
+        System.out.flush();
+
         if((destinationX - newX)*dx < 0)
         {
             this.setxCoordinate((float) destinationX);
@@ -101,7 +105,7 @@ public class Robot extends Component
         } 
         else 
         {
-            if (this.getPosition().distance(currentComponent.getPosition()) > globalRobotSpeed*speed)
+            if (this.getPosition().distance(currentComponent.getPosition()) > epsilon)
             {
                 move(currentComponent);
             }
