@@ -192,7 +192,7 @@ public class Factory extends Component implements Canvas, Observable
     }
 
     public ArrayList<Figure> getFigures() {
-        return (ArrayList<Figure>)components;
+        return figures; 
     } 
 
     /* -------------------------- METHODS OBSERVABLE -------------------------- */
@@ -213,7 +213,7 @@ public class Factory extends Component implements Canvas, Observable
     { 
         if (observers == null) { return; }
         // To be called every time model data is modified
-        for (final Observer observer : observers) 
+        for (Observer observer : observers) 
         {
             observer.modelChanged();
         }
@@ -232,6 +232,7 @@ public class Factory extends Component implements Canvas, Observable
         while (isSimulationRunning())
         {
             behave();
+            notifyObservers();
 
             try {
                 Thread.sleep(200);

@@ -26,9 +26,6 @@ public class Robot extends Component
     private boolean hasArrived = true;
     private int visitedComponentsIdx = 0;
     private Component currentComponent = null;
-    private int length = componentsToVisit.size();
-
-
 
     public Robot(Point position, Dimension dimension, String name, float speed)
     {
@@ -55,6 +52,7 @@ public class Robot extends Component
 
     public void move(Component component)
     {
+        System.out.println(getName() + ": " + position.toString());
         int destinationX = component.getxCoordinate();
         int destinationY = component.getyCoordinate();
         float distance = this.getPosition().distance(component.getPosition());
@@ -69,12 +67,17 @@ public class Robot extends Component
         if((destinationX - newX)*dx < 0)
         {
             this.setxCoordinate((float) destinationX);
-            this.setyCoordinate((float) destinationX);
         }
-
         else
         {
             this.setxCoordinate((float) (x + (dx/distance)*globalRobotSpeed*speed));
+        }
+        if((destinationY - newY)*dy < 0)
+        {
+            this.setyCoordinate((float) destinationY);
+        }
+        else
+        {
             this.setyCoordinate((float) (y + (dy/distance)*globalRobotSpeed*speed));
         }
     }
@@ -82,27 +85,22 @@ public class Robot extends Component
     @Override
     public void behave()
     {
-        if (hasArrived) {
+        if (hasArrived) 
+        {
             currentComponent = componentsToVisit.get(visitedComponentsIdx);
-            visitedComponentsIdx = (visitedComponentsIdx+1) % length;
+            visitedComponentsIdx = (visitedComponentsIdx+1) % (componentsToVisit.size());
             hasArrived = false;
-        }
-
+        } 
         else 
         {
-            if (this.getPosition().distance(currentComponent.getPosition()) < globalRobotSpeed*speed);
+            if (this.getPosition().distance(currentComponent.getPosition()) > globalRobotSpeed*speed)
             {
                 move(currentComponent);
             }
-
             else
             {
                 hasArrived = true;
             }    
         }
-
-    
-
     }
-
 }

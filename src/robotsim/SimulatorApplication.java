@@ -51,10 +51,15 @@ public class SimulatorApplication {
         for (Room room : rooms){
             factory1.addComponent(room);
         }
-
-        factory1.addComponent(new Robot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0", (float)2));
-        factory1.addComponent(new Robot(new Point(centerDoorPoint.x, centerDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot1", (float)1));
-        factory1.addComponent(new Robot(new Point(rightDoorPoint.x, rightDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot2", (float)1000));
+        Robot robot1 = new Robot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1);
+        robot1.addComponentToVisit(rooms[2]);
+        factory1.addComponent(robot1);
+        Robot robot2 = new Robot(new Point(centerDoorPoint.x, centerDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot1", (float)1);
+        robot2.addComponentToVisit(rooms[1]);
+        factory1.addComponent(robot2);
+        Robot robot3 = new Robot(new Point(rightDoorPoint.x, rightDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot2", (float)1);
+        robot3.addComponentToVisit(rooms[2]);
+        factory1.addComponent(robot3);
 
         //System.out.println(factory1.getFigures());
 
@@ -70,6 +75,8 @@ public class SimulatorApplication {
         SimulatorController controller = new SimulatorController(factory1);
 
         CanvasViewer canvasViewer = new CanvasViewer(controller);
+        controller.addObserver(canvasViewer);
+        canvasViewer.startAnimation();
     }
 
     private static Point createPoint(float x, float y)

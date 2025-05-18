@@ -3,6 +3,9 @@ package robotsim.model;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Shape;
+
+import fr.tp.inf112.projects.canvas.controller.Observer;
+
 import robotsim.view.BasicStyle.DefaultRobot;
 
 import static robotsim.view.BasicStyle.DefaultRobot;
@@ -112,6 +115,4 @@ public class Component implements Figure, Serializable
     {
         return shape;
     }
-
-
 }
