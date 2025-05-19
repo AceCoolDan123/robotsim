@@ -2,6 +2,11 @@ package robotsim.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+<<<<<<< HEAD
+=======
+import java.util.Set;
+>>>>>>> 31891eb (Revert "factory persistence manager i guess ?")
+
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Canvas;
 import fr.tp.inf112.projects.canvas.controller.Observer;
