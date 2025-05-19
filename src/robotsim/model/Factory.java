@@ -2,9 +2,7 @@ package robotsim.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Set;
 
-import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Canvas;
 import fr.tp.inf112.projects.canvas.controller.Observer;
@@ -13,22 +11,22 @@ import fr.tp.inf112.projects.canvas.controller.Observable;
 import fr.tp.inf112.projects.graph.impl.GridGraph;
 import fr.tp.inf112.projects.graph.impl.GridVertex;
 import fr.tp.inf112.projects.graph.impl.GridEdge;
-
-import robotsim.IObstacle;
+import fr.tp.inf112.projects.graph.Edge;
 
 public class Factory extends Component implements Canvas, Observable
 {
     /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
     
-    private ArrayList<Component> components = new ArrayList<Component>();
     private ArrayList<Figure> figures = new ArrayList<Figure>();
     private String id = "";
-    private GridGraph graph = new GridGraph();
 
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
     private ArrayList<Observer> observers = new ArrayList<Observer>();
     private boolean isSimulationRunning = false;
+
+    private GridGraph graph = new GridGraph();
+    private ArrayList<Component> components = new ArrayList<Component>();
 
     public Factory(Dimension dimension, String name)
     {
@@ -93,34 +91,13 @@ public class Factory extends Component implements Canvas, Observable
         int w = dimension.getWidth();
         int h = dimension.getHeight();
 
-        ArrayList<IObstacle> obstacles = new ArrayList<IObstacle>();
-        for (Component component : components)
-        {
-            if ((IObstacle)component != null)
-            {
-                obstacles.add((IObstacle)component);
-            }
-        }
-
         for (int i = 0; i < w; i++)
         {
             for (int j = 0; j < h; j++)
             {
                 Point point = new Point(i, j);
-                boolean doBreak = false;
 
-                // Check Obstacle Overlaps
-                for (IObstacle obstacle : obstacles)
-                {
-                    if (obstacle.isOverlapping(point)) 
-                    {
-                        doBreak = true;
-                        break;
-                    }
-
-                }
-
-                if (doBreak) { continue; }
+                if (isOverlapping(point)) { continue; }
 
                 GridVertex currentVertex = new GridVertex("Vertex" + i + "." + j, i, j);
                 GridVertex upVertex = (GridVertex)graph.getVertex("Vertex" + i + "." + (j - 1));
@@ -131,15 +108,35 @@ public class Factory extends Component implements Canvas, Observable
                 // Up Edge
                 if (upVertex != null)
                 {
-                    graph.addEdge(new GridEdge(graph, upVertex, currentVertex, 1));
+                    Edge edge = new GridEdge(graph, upVertex, currentVertex, 1);
+                    graph.addEdge(edge);
+                    upVertex.addEdge(edge);
+                    currentVertex.addEdge(edge);
                 }
                 // Left Edge
                 if (leftVertex != null)
                 {
-                    graph.addEdge(new GridEdge(graph, leftVertex, currentVertex, 1));
+                    Edge edge = new GridEdge(graph, leftVertex, currentVertex, 1);
+                    graph.addEdge(edge);
+                    leftVertex.addEdge(edge);
+                    currentVertex.addEdge(edge);
                 }
             }
         }
+    }
+
+    @Override
+    public boolean isOverlapping(Point point)
+    {
+        for (Component component : components)
+        {
+            if (component.isOverlapping(point))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
@@ -155,6 +152,11 @@ public class Factory extends Component implements Canvas, Observable
         {
             component.behave();
         }
+    }
+
+    public GridGraph getGraph()
+    {
+        return graph;
     }
 
     /* -------------------------- METHODS CANVAS -------------------------- */

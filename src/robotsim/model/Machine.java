@@ -19,4 +19,14 @@ public class Machine extends Component
     {
         return "Machine " + getBasicPrintInfo(); 
     }
+
+    @Override
+    public boolean isOverlapping(Point point) 
+    {
+        return false;
+    }
+
+    @Override
+    public void behave() {}
+
 }

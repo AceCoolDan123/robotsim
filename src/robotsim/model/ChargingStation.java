@@ -19,4 +19,13 @@ public class ChargingStation extends Component
     {
         return "ChargingStation " + getBasicPrintInfo(); 
     }
+
+    @Override
+    public void behave() {}
+
+    @Override
+    public boolean isOverlapping(Point point) 
+    {
+        return false;
+    }
 }

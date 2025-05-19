@@ -91,4 +91,13 @@ public class Door extends Component
             return ((int)point.y == (int)position.y) && ((int)point.x >= (int)position.x) && ((int)point.y <= (int)(position.y + length));
         }
     }
+
+    @Override
+    public boolean isOverlapping(Point point) 
+    {
+        return false;
+    }
+
+    @Override
+    public void behave() {}
 }
