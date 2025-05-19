@@ -1,5 +1,9 @@
 package robotsim.model;
 
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> fc9b7c1 (committing changes)
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -8,7 +12,13 @@ import fr.tp.inf112.projects.canvas.model.Shape;
 import robotsim.view.BasicOval;
 import robotsim.view.BasicStyle;
 
+<<<<<<< HEAD
 import fr.tp.inf112.projects.graph.impl.GridVertex;
+=======
+import fr.tp.inf112.projects.graph.ShortestPath;
+import fr.tp.inf112.projects.graph.impl.GridVertex;
+import fr.tp.inf112.projects.graph.impl.GridGraph;
+>>>>>>> fc9b7c1 (committing changes)
 import fr.tp.inf112.projects.graph.DijkstraAlgorithm;
 import fr.tp.inf112.projects.graph.Vertex;
 import fr.tp.inf112.projects.graph.Graph;
@@ -64,6 +74,7 @@ public class Robot extends Component
         if((currentDestination.x - newX)*dx < 0)
         {
             this.setxCoordinate((float) currentDestination.x);
+            System.out.println("flop type 1.1");
         }
         else
         {
@@ -73,6 +84,7 @@ public class Robot extends Component
         if((currentDestination.y - newY)*dy < 0)
         {
             this.setyCoordinate((float) currentDestination.y);
+            System.out.println("flop type 2.1");
 
         }
         else

@@ -8,7 +8,10 @@ public class Point implements Vertex, Serializable
 
     public float x;
     public float y;
+<<<<<<< HEAD
+=======
 
+>>>>>>> fc9b7c1 (committing changes)
     public Point(float x, float y)
     {
         this.x = x;
