@@ -79,4 +79,16 @@ public class Door extends Component
         return closedStyle;
     }
 
+    // for int values
+    public boolean isInBoundaries(Point point)
+    {
+        if (isVertical)
+        {
+            return ((int)point.x == (int)position.x) && ((int)point.y >= (int)position.y) && ((int)point.y <= (int)(position.y + length));
+        }
+        else
+        {
+            return ((int)point.y == (int)position.y) && ((int)point.x >= (int)position.x) && ((int)point.y <= (int)(position.y + length));
+        }
+    }
 }

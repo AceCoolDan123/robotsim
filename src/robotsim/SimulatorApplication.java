@@ -24,8 +24,8 @@ public class SimulatorApplication {
         int roomLength = 20;
         int robotLength = 3;
 
-        Point centerPoint = createPoint(factoryLength / 2 - roomLength / 2, factoryLength /2 - roomLength / 2);
-        Point centerDoorPoint = createPoint(factoryLength / 2, factoryLength / 2 - roomLength / 2);
+        //Point centerPoint = createPoint(factoryLength / 2 - roomLength / 2, factoryLength /2 - roomLength / 2);
+        //Point centerDoorPoint = createPoint(factoryLength / 2, factoryLength / 2 - roomLength / 2);
         Point leftPoint = createPoint(factoryLength / 4 - roomLength / 2, factoryLength / 2 - roomLength / 2);
         Point leftDoorPoint = createPoint(factoryLength / 4, factoryLength / 2 - roomLength / 2);
         Point rightPoint = createPoint(3 * factoryLength / 4 - roomLength / 2, factoryLength / 2 - roomLength / 2);
@@ -37,51 +37,23 @@ public class SimulatorApplication {
             new Dimension(factoryLength, factoryLength),
             "Factory 1");
 
-        Room[] rooms = new Room[3];
-        rooms[0] = new Room(leftPoint, new Dimension(roomLength, roomLength), 
+        Room room0 = new Room(leftPoint, new Dimension(roomLength, roomLength), 
                             createSingleArrayHorizontalDoors("DoorRoom0", leftDoorPoint), 
                             createSingleArrayAreaWithOneMachine("AreaRoom0", leftPoint), "Room0");
-        rooms[1] = new Room(centerPoint, new Dimension(roomLength, roomLength), 
-                            createSingleArrayHorizontalDoors("DoorRoom1", centerDoorPoint), 
-                            createSingleArrayAreaWithOneMachine("AreaRoom1", centerPoint), "Room1");
-        rooms[2] = new Room(rightPoint, new Dimension(roomLength, roomLength), 
-                            createSingleArrayHorizontalDoors("DoorRoom2", rightDoorPoint), 
-                            createSingleArrayAreaWithOneMachine("AreaRoom2", rightPoint), "Room2");
+        Room room1 = new Room(rightPoint, new Dimension(roomLength, roomLength), 
+                            createSingleArrayHorizontalDoors("DoorRoom1", rightPoint), 
+                            createSingleArrayAreaWithOneMachine("AreaRoom1", rightPoint), "Room1");
 
-        for (Room room : rooms){
-            factory1.addComponent(room);
-        }
+        factory1.addComponent(room0);
+        factory1.addComponent(room1);
 
         factory1.addComponent(new ChargingStation(chargingPoint, new Dimension(10, 10), "Charging Station"));
         factory1.addComponent(new Puck(puckPoint, new Dimension(2, 2), "Puck"));
 
         Robot robot1 = new Robot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1);
-        robot1.addComponentToVisit(rooms[2]);
-        robot1.addComponentToVisit(rooms[0]);
-        robot1.addComponentToVisit(rooms[1]);
+        robot1.addComponentToVisit(room0);
+        robot1.addComponentToVisit(room1);
         factory1.addComponent(robot1);
-        Robot robot2 = new Robot(new Point(centerDoorPoint.x, centerDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot1", (float)1);
-        robot2.addComponentToVisit(rooms[1]);
-        robot2.addComponentToVisit(rooms[0]);
-        robot2.addComponentToVisit(rooms[2]);
-        factory1.addComponent(robot2);
-        Robot robot3 = new Robot(new Point(rightDoorPoint.x, rightDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot2", (float)1);
-        robot3.addComponentToVisit(rooms[2]);
-        robot3.addComponentToVisit(rooms[1]);
-        robot3.addComponentToVisit(rooms[0]);
-        factory1.addComponent(robot3);
-
-
-        //System.out.println(factory1.getFigures());
-
-        //Room[] roomsTest = new Room[1];
-        //roomsTest[0] = new Room(centerPoint, new Dimension(roomLength, roomLength), 
-                            //createSingleArrayHorizontalDoors("DoorRoom0", leftDoorPoint), 
-                            //createSingleArrayAreaWithOneMachine("AreaRoom0", leftPoint), "Room0");
-        //Factory test = new Factory(new Dimension(100,100), "factory1", roomsTest, null, null);
-        //test.addRobot(new Point(50,50), new Dimension(3, 3), "robot1");
-        //CanvasViewer testViewer = new CanvasViewer((Canvas)test);
-        //System.out.println("factory1.figures : " + factory1.getFigures());
 
         SimulatorController controller = new SimulatorController(factory1);
 

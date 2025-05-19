@@ -14,6 +14,8 @@ import fr.tp.inf112.projects.graph.impl.GridGraph;
 import fr.tp.inf112.projects.graph.impl.GridVertex;
 import fr.tp.inf112.projects.graph.impl.GridEdge;
 
+import robotsim.IObstacle;
+
 public class Factory extends Component implements Canvas, Observable
 {
     /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
@@ -31,13 +33,6 @@ public class Factory extends Component implements Canvas, Observable
     public Factory(Dimension dimension, String name)
     {
         super(new Point(0,0), dimension, name);
-        for (int i = 0; i < dimension.getWidth(); i++)
-        {
-            for (int j = 0; j < dimension.getWidth(); j++)
-            {
-                //graph.addVertex(new GridVertex());
-            }
-        }
     }
 
     public boolean addComponent(Room room) 
@@ -92,30 +87,61 @@ public class Factory extends Component implements Canvas, Observable
 
         return false;
     }
-/* 
-    public boolean addRobot(Point position, Dimension dimension, String name)
-    {
-        if (!checkRobotName(name))
-        {
-            return false;
-        }
-        Robot new_robot = new Robot(position, dimension, name, 0);
-        robots.add(new_robot);
-        addComponent(new_robot);
-        return true;
-    }
 
-    private boolean checkRobotName(String name)
+    public void constructGraph()
     {
-        for (Robot robot : robots) {
-            if (robot.getName().equals(name))
+        int w = dimension.getWidth();
+        int h = dimension.getHeight();
+
+        ArrayList<IObstacle> obstacles = new ArrayList<IObstacle>();
+        for (Component component : components)
+        {
+            if ((IObstacle)component != null)
             {
-                return false;
+                obstacles.add((IObstacle)component);
             }
         }
-        return true;
+
+        for (int i = 0; i < w; i++)
+        {
+            for (int j = 0; j < h; j++)
+            {
+                Point point = new Point(i, j);
+                boolean doBreak = false;
+
+                // Check Obstacle Overlaps
+                for (IObstacle obstacle : obstacles)
+                {
+                    if (obstacle.isOverlapping(point)) 
+                    {
+                        doBreak = true;
+                        break;
+                    }
+
+                }
+
+                if (doBreak) { continue; }
+
+                GridVertex currentVertex = new GridVertex("Vertex" + i + "." + j, i, j);
+                GridVertex upVertex = (GridVertex)graph.getVertex("Vertex" + i + "." + (j - 1));
+                GridVertex leftVertex = (GridVertex)graph.getVertex("Vertex" + (i - 1) + "." + j);
+
+                graph.addVertex(currentVertex);
+
+                // Up Edge
+                if (upVertex != null)
+                {
+                    graph.addEdge(new GridEdge(graph, upVertex, currentVertex, 1));
+                }
+                // Left Edge
+                if (leftVertex != null)
+                {
+                    graph.addEdge(new GridEdge(graph, leftVertex, currentVertex, 1));
+                }
+            }
+        }
     }
-*/
+
     @Override
     public String toString()
     {
@@ -130,7 +156,6 @@ public class Factory extends Component implements Canvas, Observable
             component.behave();
         }
     }
-
 
     /* -------------------------- METHODS CANVAS -------------------------- */
 
