@@ -229,7 +229,7 @@ public class Factory extends Component implements Canvas, Observable
             notifyObservers();
 
             try {
-                Thread.sleep(200);
+                Thread.sleep(20);
             } 
             catch (InterruptedException ex) {
                 ex.printStackTrace();
