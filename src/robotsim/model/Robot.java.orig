@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.List;
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.List;
@@ -14,7 +15,17 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 >>>>>>> d2c7af0 (merging with main)
+<<<<<<< HEAD
 >>>>>>> 1689a42 (merging with main)
+=======
+=======
+=======
+import java.util.ArrayList;
+>>>>>>> fc9b7c1 (committing changes)
+import java.util.LinkedList;
+import java.util.Queue;
+>>>>>>> 822e7d2 (committing changes)
+>>>>>>> 1dd5191 (committing changes)
 
 import fr.tp.inf112.projects.canvas.model.Shape; 
 
@@ -30,8 +41,15 @@ import fr.tp.inf112.projects.graph.impl.GridVertex;
 import fr.tp.inf112.projects.graph.ShortestPath;
 import fr.tp.inf112.projects.graph.impl.GridVertex;
 import fr.tp.inf112.projects.graph.impl.GridGraph;
+<<<<<<< HEAD
 >>>>>>> d2c7af0 (merging with main)
+<<<<<<< HEAD
 >>>>>>> 1689a42 (merging with main)
+=======
+=======
+>>>>>>> fc9b7c1 (committing changes)
+>>>>>>> 822e7d2 (committing changes)
+>>>>>>> 1dd5191 (committing changes)
 import fr.tp.inf112.projects.graph.DijkstraAlgorithm;
 import fr.tp.inf112.projects.graph.Vertex;
 import fr.tp.inf112.projects.graph.Graph;
@@ -73,14 +91,23 @@ public class Robot extends Component
     public void move()
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         float distance = this.getPosition().distance(currentDestination);
 =======
+=======
+>>>>>>> 1dd5191 (committing changes)
 <<<<<<< HEAD
         float distance = this.getPosition().distance(currentDestination);
 =======
         float distance = this.getPosition().distance(component.getPosition());
 >>>>>>> d2c7af0 (merging with main)
+<<<<<<< HEAD
 >>>>>>> 1689a42 (merging with main)
+=======
+=======
+        float distance = this.getPosition().distance(component.getPosition());
+>>>>>>> 822e7d2 (committing changes)
+>>>>>>> 1dd5191 (committing changes)
         float x = this.getTruexCoordinate();
         float y = this.getTrueyCoordinate();
         float dx = currentDestination.x - x;
@@ -88,25 +115,45 @@ public class Robot extends Component
 
         float newX = (float) (x + (dx/distance)*globalRobotSpeed*speed);
         float newY = (float) (y + (dy/distance)*globalRobotSpeed*speed);
+<<<<<<< HEAD
+=======
+        
+        System.out.println(getName() + ": " + position.toString() + "\n(newX, newY) = (" + newX +"," + newY + ")");
+        System.out.flush();
+>>>>>>> 822e7d2 (committing changes)
 
         if((currentDestination.x - newX)*dx < 0)
         {
             this.setxCoordinate((float) currentDestination.x);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1dd5191 (committing changes)
 <<<<<<< HEAD
 =======
             System.out.println("flop type 1.1");
 >>>>>>> d2c7af0 (merging with main)
+<<<<<<< HEAD
 >>>>>>> 1689a42 (merging with main)
+=======
+=======
+            System.out.println("flop type 1.1");
+>>>>>>> 822e7d2 (committing changes)
+>>>>>>> 1dd5191 (committing changes)
         }
         else
         {
             this.setxCoordinate(newX);
+<<<<<<< HEAD
+=======
+            System.out.println("flop type 1.2");
+>>>>>>> 822e7d2 (committing changes)
         }
         if((currentDestination.y - newY)*dy < 0)
         {
             this.setyCoordinate((float) currentDestination.y);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -117,12 +164,27 @@ public class Robot extends Component
             System.out.println("flop type 2.1");
 
 >>>>>>> d2c7af0 (merging with main)
+<<<<<<< HEAD
 >>>>>>> 1689a42 (merging with main)
+=======
+=======
+            System.out.println("flop type 2.1");
+
+>>>>>>> 822e7d2 (committing changes)
+>>>>>>> 1dd5191 (committing changes)
         }
         else
         {
             this.setyCoordinate(newY);
+<<<<<<< HEAD
         }
+=======
+            System.out.println("flop type 2.2");
+        }
+
+        System.out.println(getName() + ": " + position.toString() + "\n(newX, newY) = (" + newX +"," + newY + ")");
+        
+>>>>>>> 822e7d2 (committing changes)
     }
 
     @Override
@@ -155,7 +217,10 @@ public class Robot extends Component
         GridVertex vertex = onGoingPath.poll();
         currentDestination = new Point(vertex.getxCoordinate(), vertex.getyCoordinate());
     }
+<<<<<<< HEAD
 
     @Override
     public boolean isOverlapping(Point point) { return false; }
+=======
+>>>>>>> 822e7d2 (committing changes)
 }

@@ -12,10 +12,17 @@ public class Point implements Vertex, Serializable
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> fc9b7c1 (committing changes)
 =======
 >>>>>>> d2c7af0 (merging with main)
 >>>>>>> 1689a42 (merging with main)
+=======
+>>>>>>> d2c7af0 (merging with main)
+=======
+>>>>>>> fc9b7c1 (committing changes)
+>>>>>>> 822e7d2 (committing changes)
+>>>>>>> 1dd5191 (committing changes)
     public Point(float x, float y)
     {
         this.x = x;
