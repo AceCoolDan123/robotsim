@@ -2,6 +2,7 @@ package robotsim.model;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.List;
 
 import fr.tp.inf112.projects.canvas.model.Shape; 
 
@@ -49,7 +50,7 @@ public class Robot extends Component
 
     public void move()
     {
-        float distance = this.getPosition().distance(component.getPosition());
+        float distance = this.getPosition().distance(currentDestination);
         float x = this.getTruexCoordinate();
         float y = this.getTrueyCoordinate();
         float dx = currentDestination.x - x;
@@ -57,9 +58,6 @@ public class Robot extends Component
 
         float newX = (float) (x + (dx/distance)*globalRobotSpeed*speed);
         float newY = (float) (y + (dy/distance)*globalRobotSpeed*speed);
-        
-        System.out.println(getName() + ": " + position.toString() + "\n(newX, newY) = (" + newX +"," + newY + ")");
-        System.out.flush();
 
         if((currentDestination.x - newX)*dx < 0)
         {
@@ -68,21 +66,15 @@ public class Robot extends Component
         else
         {
             this.setxCoordinate(newX);
-            System.out.println("flop type 1.2");
         }
         if((currentDestination.y - newY)*dy < 0)
         {
             this.setyCoordinate((float) currentDestination.y);
-
         }
         else
         {
             this.setyCoordinate(newY);
-            System.out.println("flop type 2.2");
         }
-
-        System.out.println(getName() + ": " + position.toString() + "\n(newX, newY) = (" + newX +"," + newY + ")");
-        
     }
 
     @Override
@@ -115,4 +107,7 @@ public class Robot extends Component
         GridVertex vertex = onGoingPath.poll();
         currentDestination = new Point(vertex.getxCoordinate(), vertex.getyCoordinate());
     }
+
+    @Override
+    public boolean isOverlapping(Point point) { return false; }
 }

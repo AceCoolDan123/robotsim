@@ -56,13 +56,28 @@ public class Room extends Component
         // up edge
         ((point.y == (int)position.y) && isInXBoundaries(point.x));
 
+<<<<<<< HEAD
+
         return overlappingEdge && notOverlappingDoors(point);
     }
 
+=======
+        return overlappingEdge && notOverlappingDoors(point);
+    }
+
+>>>>>>> ee7b86d (collider must be implemented but it works otherwise !)
     private boolean notOverlappingDoors(Point point)
     {
         for (Door door : doors)
         {
+<<<<<<< HEAD
+            if(door.isOverlapping(point))
+            {
+                return true;
+            }
+        }
+        return false;
+=======
             if (door.isInBoundaries(point))
             {
                 return false;
@@ -70,6 +85,7 @@ public class Room extends Component
         }
 
         return true;
+>>>>>>> ee7b86d (collider must be implemented but it works otherwise !)
     }
 
     private boolean isInXBoundaries(float x)
