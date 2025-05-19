@@ -38,4 +38,13 @@ public class Area extends Component
     {
         return machines;
     }
+
+    @Override
+    public void behave() {}
+
+    @Override
+    public boolean isOverlapping(Point point) 
+    {
+        return false;
+    }
 }

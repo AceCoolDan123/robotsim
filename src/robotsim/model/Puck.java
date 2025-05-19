@@ -18,4 +18,14 @@ public class Puck extends Component
     {
         return "Pluck " + getBasicPrintInfo();
     }
+
+    @Override
+    public boolean isOverlapping(Point point) 
+    {
+        return false;
+    }
+
+    @Override
+    public void behave() {}
+
 }

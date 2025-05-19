@@ -3,12 +3,11 @@ package robotsim.model;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Shape;
-import fr.tp.inf112.projects.canvas.controller.Observer;
 
 import java.io.Serializable;
 
 
-public class Component implements Figure, Serializable
+public abstract class Component implements Figure, Serializable
 {
     protected Point position;
     protected Dimension dimension;
@@ -31,14 +30,6 @@ public class Component implements Figure, Serializable
         this.dimension = new Dimension(dimension.getHeight(), dimension.getWidth());
         this.name = name;
     }
-
-    /*public Component(Point position, Dimension dimension, String name, Color backgroundColor)
-    {
-        this.position = new Point(position.x, position.y);
-        this.dimension = new Dimension(dimension.cornerLT, dimension.cornerRT, dimension.cornerLT, dimension.cornerLB);
-        this.name = name;
-        this.backgroundColor = backgroundColor;
-    }*/
 
     public final String getName()
     {
@@ -75,10 +66,8 @@ public class Component implements Figure, Serializable
         this.parentFactory = factory;
     }
 
-    public void behave()
-    {
-        
-    }
+    public abstract void behave();
+    public abstract boolean isOverlapping(Point point);
 
     @Override
     public String toString()
@@ -111,7 +100,6 @@ public class Component implements Figure, Serializable
 
     public Style getStyle()
     {
-        //return DefaultRobot;
         return this.style;
     }
     

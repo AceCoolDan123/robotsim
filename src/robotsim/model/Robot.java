@@ -1,7 +1,8 @@
 package robotsim.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import fr.tp.inf112.projects.canvas.model.Shape; 
 
@@ -12,6 +13,12 @@ import robotsim.view.BasicOval;
 import robotsim.view.BasicStyle;
 import robotsim.view.BasicStroke;
 
+import fr.tp.inf112.projects.graph.ShortestPath;
+import fr.tp.inf112.projects.graph.impl.GridVertex;
+import fr.tp.inf112.projects.graph.impl.GridGraph;
+import fr.tp.inf112.projects.graph.DijkstraAlgorithm;
+import fr.tp.inf112.projects.graph.Vertex;
+import fr.tp.inf112.projects.graph.Graph;
 
 public class Robot extends Component
 {
@@ -19,23 +26,19 @@ public class Robot extends Component
     private final static double globalRobotSpeed = 1;
 
     /* -------------------------- BEHAVIORAL ATTRIBUTES -------------------------- */
-
-    private ArrayList<Component> componentsToVisit = new ArrayList<Component>();
-    
-    //behave method attributes
-    private boolean hasArrived = true;
-    private int visitedComponentsIdx = 0;
-    private Component currentComponent = null;
+    private Queue<Point> destinations = new LinkedList<Point>();
+    private Queue<GridVertex> onGoingPath = new LinkedList<GridVertex>();
+    private Point currentDestination;
     private float epsilon = (float) 0.4;
+    private Factory factory;
 
-    public Robot(Point position, Dimension dimension, String name, float speed)
+    public Robot(Point position, Dimension dimension, String name, float speed, Factory factory)
     {
         super(position, dimension, name);
         this.speed = speed;
         shape = (Shape)(new BasicOval(dimension.getWidth(), dimension.getHeight()));
         style = BasicStyle.DefaultRobot; 
- 
-        componentsToVisit = new ArrayList<Component>();
+        this.factory = factory;
     }
 
     @Override
@@ -46,20 +49,18 @@ public class Robot extends Component
 
     /* -------------------------- BEHAVIORAL METHODS -------------------------- */
 
-    public void addComponentToVisit(Component component)
+    public void addDestination(Point point)
     {
-        componentsToVisit.add(component);
+        destinations.add(point);
     }
 
     public void move(Component component)
     {
-        float destinationX = component.getTruexCoordinate();
-        float destinationY = component.getTrueyCoordinate();
         float distance = this.getPosition().distance(component.getPosition());
         float x = this.getTruexCoordinate();
         float y = this.getTrueyCoordinate();
-        float dx = destinationX - x;
-        float dy = destinationY - y;
+        float dx = currentDestination.x - x;
+        float dy = currentDestination.y - y;
 
         float newX = (float) (x + (dx/distance)*globalRobotSpeed*speed);
         float newY = (float) (y + (dy/distance)*globalRobotSpeed*speed);
@@ -67,9 +68,9 @@ public class Robot extends Component
         System.out.println(getName() + ": " + position.toString() + "\n(newX, newY) = (" + newX +"," + newY + ")");
         System.out.flush();
 
-        if((destinationX - newX)*dx < 0)
+        if((currentDestination.x - newX)*dx < 0)
         {
-            this.setxCoordinate((float) destinationX);
+            this.setxCoordinate((float) currentDestination.x);
             System.out.println("flop type 1.1");
         }
         else
@@ -77,9 +78,9 @@ public class Robot extends Component
             this.setxCoordinate(newX);
             System.out.println("flop type 1.2");
         }
-        if((destinationY - newY)*dy < 0)
+        if((currentDestination.y - newY)*dy < 0)
         {
-            this.setyCoordinate((float) destinationY);
+            this.setyCoordinate((float) currentDestination.y);
             System.out.println("flop type 2.1");
 
         }
@@ -96,23 +97,31 @@ public class Robot extends Component
     @Override
     public void behave()
     {
-        if (hasArrived) 
+        // nowhere to explore
+        if (onGoingPath.isEmpty() && destinations.isEmpty()) { return; }
+
+        // new path to calculate
+        if (onGoingPath.isEmpty()) 
         {
-            currentComponent = componentsToVisit.get(visitedComponentsIdx);
-            visitedComponentsIdx = (visitedComponentsIdx+1) % (componentsToVisit.size());
-            System.out.println("visited component changed ! currentIdx : "+visitedComponentsIdx);
-            hasArrived = false;
-        } 
-        else 
-        {
-            if (this.getPosition().distance(currentComponent.getPosition()) > epsilon)
+            Point finalDestination = destinations.poll();
+            GridVertex currentVertex = (GridVertex)factory.getGraph().getVertex("Vertex" + (int)getPosition().x + "." + (int)getPosition().y);
+            GridVertex finalVertex = (GridVertex)factory.getGraph().getVertex("Vertex" + (int)finalDestination.x + "." + (int)finalDestination.y);
+            
+            List<Vertex> path = DijkstraAlgorithm.findShortestPath((Graph)factory.getGraph(), (Vertex)currentVertex, (Vertex)finalVertex);
+
+            for (Vertex vertex : path)
             {
-                move(currentComponent);
+                onGoingPath.add((GridVertex)vertex);
             }
-            else
-            {
-                hasArrived = true;
-            }    
+        } 
+        else if (currentDestination != null && this.getPosition().distance(currentDestination) > epsilon)
+        {
+            move();
+            return;
         }
+
+        // following onGoingPath
+        GridVertex vertex = onGoingPath.poll();
+        currentDestination = new Point(vertex.getxCoordinate(), vertex.getyCoordinate());
     }
 }
