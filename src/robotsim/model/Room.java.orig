@@ -58,31 +58,53 @@ public class Room extends Component
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> bb752d8 (commit aled)
+=======
+=======
+
+>>>>>>> d37aba2 (collider must be implemented but it works otherwise !)
+>>>>>>> e2b2bb3 (collider must be implemented but it works otherwise !)
         return overlappingEdge && notOverlappingDoors(point);
     }
 
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
         return overlappingEdge && notOverlappingDoors(point);
     }
 
 >>>>>>> ee7b86d (collider must be implemented but it works otherwise !)
 =======
+=======
+>>>>>>> e2b2bb3 (collider must be implemented but it works otherwise !)
 
         return overlappingEdge && notOverlappingDoors(point);
     }
 
 >>>>>>> 3651c15 (commit aled)
+<<<<<<< HEAD
 >>>>>>> bb752d8 (commit aled)
+=======
+=======
+        return overlappingEdge && notOverlappingDoors(point);
+    }
+
+>>>>>>> ee7b86d (collider must be implemented but it works otherwise !)
+>>>>>>> d37aba2 (collider must be implemented but it works otherwise !)
+>>>>>>> e2b2bb3 (collider must be implemented but it works otherwise !)
     private boolean notOverlappingDoors(Point point)
     {
         for (Door door : doors)
         {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e2b2bb3 (collider must be implemented but it works otherwise !)
             if(door.isOverlapping(point))
             {
                 return true;
@@ -90,8 +112,12 @@ public class Room extends Component
         }
         return false;
 =======
+<<<<<<< HEAD
 =======
 >>>>>>> bb752d8 (commit aled)
+=======
+>>>>>>> d37aba2 (collider must be implemented but it works otherwise !)
+>>>>>>> e2b2bb3 (collider must be implemented but it works otherwise !)
             if (door.isInBoundaries(point))
             {
                 return false;
@@ -100,8 +126,11 @@ public class Room extends Component
 
         return true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> ee7b86d (collider must be implemented but it works otherwise !)
 =======
+=======
+>>>>>>> e2b2bb3 (collider must be implemented but it works otherwise !)
 =======
             if(door.isOverlapping(point))
             {
@@ -110,7 +139,13 @@ public class Room extends Component
         }
         return false;
 >>>>>>> 3651c15 (commit aled)
+<<<<<<< HEAD
 >>>>>>> bb752d8 (commit aled)
+=======
+=======
+>>>>>>> ee7b86d (collider must be implemented but it works otherwise !)
+>>>>>>> d37aba2 (collider must be implemented but it works otherwise !)
+>>>>>>> e2b2bb3 (collider must be implemented but it works otherwise !)
     }
 
     private boolean isInXBoundaries(float x)

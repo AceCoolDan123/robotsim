@@ -48,7 +48,7 @@ public class SimulatorApplication {
         factory1.addComponent(new ChargingStation(chargingPoint, new Dimension(10, 10), "Charging Station"));
         factory1.addComponent(new Puck(puckPoint, new Dimension(2, 2), "Puck"));
 
-        Robot robot1 = new Robot(new Point(leftDoorPoint.getxCoordinate(), leftDoorPoint.getyCoordinate() - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory1);
+        Robot robot1 = new Robot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory1);
         robot1.addDestination(puckPoint);
         robot1.addDestination(chargingPoint);
         robot1.addDestination(puckPoint);
