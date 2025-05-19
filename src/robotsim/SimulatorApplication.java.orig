@@ -56,12 +56,20 @@ public class SimulatorApplication {
 >>>>>>> fc9b7c1 (committing changes)
 =======
         Robot robot1 = new Robot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory1);
+<<<<<<< HEAD
 >>>>>>> d6fad55 (Revert "factory persistence manager i guess ?")
+=======
+=======
+=======
+        Robot robot1 = new Robot(new Point(leftDoorPoint.getxCoordinate(), leftDoorPoint.getyCoordinate() - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory);
+>>>>>>> d2c7af0 (merging with main)
+>>>>>>> 1689a42 (merging with main)
         robot1.addDestination(puckPoint);
         robot1.addDestination(chargingPoint);
         robot1.addDestination(puckPoint);
 
         factory1.addComponent(robot1);
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 =======
@@ -82,6 +90,8 @@ public class SimulatorApplication {
         factory1.addComponent(robot3);
 >>>>>>> 31891eb (Revert "factory persistence manager i guess ?")
 >>>>>>> d6fad55 (Revert "factory persistence manager i guess ?")
+=======
+>>>>>>> 1689a42 (merging with main)
 
         factory1.constructGraph();
 
@@ -115,7 +125,11 @@ public class SimulatorApplication {
         return res;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> d6fad55 (Revert "factory persistence manager i guess ?")
+=======
+}
+>>>>>>> 1689a42 (merging with main)
