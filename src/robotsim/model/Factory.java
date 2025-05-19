@@ -2,7 +2,6 @@ package robotsim.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
 import fr.tp.inf112.projects.canvas.model.Style;
@@ -28,7 +27,7 @@ public class Factory extends Component implements Canvas, Observable
 
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
-    private transient ArrayList<Observer> observers = new ArrayList<Observer>();
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
     private boolean isSimulationRunning = false;
 
     public Factory(Dimension dimension, String name)
@@ -186,15 +185,13 @@ public class Factory extends Component implements Canvas, Observable
 
     /* -------------------------- METHODS OBSERVABLE -------------------------- */
 
+    @Override
     public boolean addObserver(Observer observer) 
     {
-        if (observers == null){
-            observers = new ArrayList<>();
-        }
-        
         return observers.add(observer);
     }
 
+    @Override
     public boolean removeObserver(Observer observer) 
     {
         return observers.remove(observer);
@@ -202,9 +199,7 @@ public class Factory extends Component implements Canvas, Observable
 
     protected void notifyObservers() 
     { 
-        if (observers == null){
-            observers = new ArrayList<>();
-        }
+        if (observers == null) { return; }
         // To be called every time model data is modified
         for (Observer observer : observers) 
         {
