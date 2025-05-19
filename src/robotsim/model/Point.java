@@ -6,21 +6,19 @@ import java.io.Serializable;
 public class Point implements Vertex, Serializable
 {
 
-    public float x;
-    public float y;
+    private float x;
+    private float y;
     public Point(float x, float y)
     {
         this.x = x;
         this.y = y;
     }
 
-    @Override
     public int getxCoordinate()
     {
         return (int) x;
     };
 
-    @Override
     public int getyCoordinate()
     {
         return (int) y;

@@ -3,14 +3,8 @@ package robotsim.model;
 import fr.tp.inf112.projects.canvas.model.Figure;
 import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Shape;
-
 import fr.tp.inf112.projects.canvas.controller.Observer;
 
-import robotsim.view.BasicStyle.DefaultRobot;
-
-import static robotsim.view.BasicStyle.DefaultRobot;
-
-import java.awt.BasicStroke;
 import java.io.Serializable;
 
 
@@ -33,7 +27,7 @@ public class Component implements Figure, Serializable
 
     public Component(Point position, Dimension dimension, String name)
     {
-        this.position = new Point(position.x, position.y);
+        this.position = new Point(position.getxCoordinate(), position.getyCoordinate());
         this.dimension = new Dimension(dimension.getHeight(), dimension.getWidth());
         this.name = name;
     }
@@ -97,22 +91,22 @@ public class Component implements Figure, Serializable
 
     public int getxCoordinate() 
     {
-        return (int)position.x;
+        return (int)position.getxCoordinate();
     }
     
     public int getyCoordinate() 
     {
-        return (int)position.y;
+        return (int)position.getyCoordinate();
     }
 
     protected float getTruexCoordinate()
     {
-        return position.x;
+        return position.getxCoordinate();
     }
 
     protected float getTrueyCoordinate()
     {
-        return position.y;
+        return position.getyCoordinate();
     }
 
     public Style getStyle()
