@@ -68,10 +68,6 @@ public class Room extends Component
                 return false;
             }
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> d37aba2 (collider must be implemented but it works otherwise !)
         return true;
     }
 
