@@ -60,10 +60,15 @@ public class SimulatorApplication {
 >>>>>>> d6fad55 (Revert "factory persistence manager i guess ?")
 =======
 =======
+<<<<<<< HEAD
 =======
         Robot robot1 = new Robot(new Point(leftDoorPoint.getxCoordinate(), leftDoorPoint.getyCoordinate() - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory);
 >>>>>>> d2c7af0 (merging with main)
 >>>>>>> 1689a42 (merging with main)
+=======
+        Robot robot1 = new Robot(new Point(leftDoorPoint.getxCoordinate(), leftDoorPoint.getyCoordinate() - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory1);
+>>>>>>> 3651c15 (commit aled)
+>>>>>>> bb752d8 (commit aled)
         robot1.addDestination(puckPoint);
         robot1.addDestination(chargingPoint);
         robot1.addDestination(puckPoint);

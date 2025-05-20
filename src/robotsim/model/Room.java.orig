@@ -57,19 +57,31 @@ public class Room extends Component
         ((point.y == (int)position.y) && isInXBoundaries(point.x));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> bb752d8 (commit aled)
         return overlappingEdge && notOverlappingDoors(point);
     }
 
 =======
+<<<<<<< HEAD
         return overlappingEdge && notOverlappingDoors(point);
     }
 
 >>>>>>> ee7b86d (collider must be implemented but it works otherwise !)
+=======
+
+        return overlappingEdge && notOverlappingDoors(point);
+    }
+
+>>>>>>> 3651c15 (commit aled)
+>>>>>>> bb752d8 (commit aled)
     private boolean notOverlappingDoors(Point point)
     {
         for (Door door : doors)
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
             if(door.isOverlapping(point))
             {
@@ -78,6 +90,8 @@ public class Room extends Component
         }
         return false;
 =======
+=======
+>>>>>>> bb752d8 (commit aled)
             if (door.isInBoundaries(point))
             {
                 return false;
@@ -85,7 +99,18 @@ public class Room extends Component
         }
 
         return true;
+<<<<<<< HEAD
 >>>>>>> ee7b86d (collider must be implemented but it works otherwise !)
+=======
+=======
+            if(door.isOverlapping(point))
+            {
+                return true;
+            }
+        }
+        return false;
+>>>>>>> 3651c15 (commit aled)
+>>>>>>> bb752d8 (commit aled)
     }
 
     private boolean isInXBoundaries(float x)
