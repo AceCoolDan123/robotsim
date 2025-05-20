@@ -8,8 +8,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import fr.tp.inf112.projects.canvas.model.impl.AbstractCanvasPersistenceManager;
+import fr.tp.inf112.projects.canvas.view.CanvasViewer;
 import fr.tp.inf112.projects.canvas.model.Canvas;
 import fr.tp.inf112.projects.canvas.model.CanvasChooser;
+
+import robotsim.controller.SimulatorController;
+import robotsim.model.Factory;
 
 public class FactoryPersistenceManager extends AbstractCanvasPersistenceManager
 {
@@ -29,6 +33,13 @@ public class FactoryPersistenceManager extends AbstractCanvasPersistenceManager
 		try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(canvasId))) {
             Object object = objectInputStream.readObject();
             if (object instanceof Canvas) {
+                if (object instanceof Factory) {
+                    SimulatorController controller = new SimulatorController((Factory) object);
+
+                    CanvasViewer canvasViewer = new CanvasViewer(controller);
+                    controller.addObserver(canvasViewer);
+                    canvasViewer.startAnimation();
+                }
                 return (Canvas) object;
             } else {
                 throw new IOException("Le fichier ne contient pas un objet Canvas valide.");
@@ -38,17 +49,17 @@ public class FactoryPersistenceManager extends AbstractCanvasPersistenceManager
         }
 	}
 
-	/**
-	 * Persists the specified canvas model into the data store of this persistence manager.
-	 * 
-	 * @param canvasModel The canvas model object.
-	 * 
-	 * @throws IOException When a problem occurs when persisting the canvas (e.g. wrong {@code canvasId}, unavailable data store
-	 * or locked resource, etc.).
-	 */
 	public void persist(Canvas canvasModel)
 	throws IOException
 	{
+
+        if (canvasModel.getId() == null || canvasModel.getId().isEmpty()) {
+            String newId = this.getCanvasChooser().newCanvasId();
+            canvasModel.setId(newId);
+            /*System.out.println("newId = "+ newId);
+            System.out.println("canvasModel.getId() = " + canvasModel.getId());*/
+        }
+
 		String canvasId = canvasModel.getId();
         File file = new File(canvasId);
         File parentDir = file.getParentFile();
@@ -66,16 +77,6 @@ public class FactoryPersistenceManager extends AbstractCanvasPersistenceManager
         }
 	}
 
-	/**
-	 * Deletes the specified canvas model from the data store of this persistence manager.
-	 * 
-	 * @param canvasModel The canvas model object.
-	 * 
-	 * @return A {@code boolean} stating if the specified canvas model was removed or not from the data store, according to its existence in the data store.
-	 * 
-	 * @throws IOException When a problem occurs when deleting the canvas (e.g. wrong {@code canvasId}, unavailable data store
-	 * or locked resource, etc.).
-	 */
 	public boolean delete(Canvas canvasModel)
 	throws IOException
 	{
@@ -92,7 +93,5 @@ public class FactoryPersistenceManager extends AbstractCanvasPersistenceManager
 
         return true;
     }
-	}
 	
-
 }

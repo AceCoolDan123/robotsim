@@ -12,7 +12,9 @@ public class BasicStyle implements Style, Serializable
     private Color backgroundColor;
     private Stroke stroke;
 
-    public static final Style DefaultRobot = new BasicStyle(RGBColor.PINK, BasicStroke.TRAITPLEINFIN);
+
+
+    public static final Style DefaultRobot = new BasicStyle(new RGBColor(255, 150, 220), BasicStroke.TRAITPLEINFIN);
 
     public static final Style DefaultRoom = new BasicStyle(RGBColor.LIGHT_GRAY, BasicStroke.TRAITPLEINFIN);
 

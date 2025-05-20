@@ -2,10 +2,13 @@ package robotsim.controller;
 
 import robotsim.model.Factory;
 
+import robotsim.persistence.FactoryPersistenceManager;
+
 import fr.tp.inf112.projects.canvas.controller.CanvasViewerController;
 import fr.tp.inf112.projects.canvas.controller.Observer;
 import fr.tp.inf112.projects.canvas.model.CanvasPersistenceManager;
 import fr.tp.inf112.projects.canvas.model.Canvas;
+import fr.tp.inf112.projects.canvas.view.FileCanvasChooser;
 
 
 public class SimulatorController implements CanvasViewerController 
@@ -13,6 +16,7 @@ public class SimulatorController implements CanvasViewerController
 
     private final Factory factoryModel;
     private Canvas canvasModel;
+    private FactoryPersistenceManager persistenceManager = new FactoryPersistenceManager(new FileCanvasChooser("fctr", "factoy"));
 
     public SimulatorController(Factory factoryModel)
     {
@@ -20,13 +24,11 @@ public class SimulatorController implements CanvasViewerController
         this.canvasModel = (Canvas)factoryModel;
     }
 
-    @Override
     public boolean addObserver(Observer observer)
     {
         return factoryModel.addObserver(observer);
     }
 
-    @Override
 	public boolean removeObserver(Observer observer)
     {
         return factoryModel.addObserver(observer);
@@ -36,7 +38,7 @@ public class SimulatorController implements CanvasViewerController
     {
         return canvasModel;
     }
-	
+
 	public void setCanvas(Canvas canvasModel)
     {
         this.canvasModel = canvasModel;
@@ -44,22 +46,19 @@ public class SimulatorController implements CanvasViewerController
 	
 	public CanvasPersistenceManager getPersistenceManager()
     {
-        return null;
+        return persistenceManager;
     }
 	
-    @Override
 	public void startAnimation()
     {
         factoryModel.startSimulation();
     }
 
-    @Override
 	public void stopAnimation()
     {
         factoryModel.stopSimulation();
     }
 	
-    @Override
 	public boolean isAnimationRunning()
     {
         return factoryModel.isSimulationRunning();

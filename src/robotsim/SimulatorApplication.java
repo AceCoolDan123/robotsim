@@ -103,8 +103,8 @@ public class SimulatorApplication {
         Dimension machineDimension = new Dimension(5, 5); 
         Area[] res = new Area[1];
         Machine[] machines = new Machine[1];
-        machines[0] = new Machine(new Point(pos.x + 8,  pos.y + 8), machineDimension, "name's Machine");
-        res[0] = new Area(new Point(pos.x + 20 / 4,  pos.y + 20 / 4), areaDimension, machines, name);
+        machines[0] = new Machine(new Point(pos.getxCoordinate() + 8,  pos.getyCoordinate() + 8), machineDimension, "name's Machine");
+        res[0] = new Area(new Point(pos.getxCoordinate() + 20 / 4,  pos.getyCoordinate() + 20 / 4), areaDimension, machines, name);
         return res;
     }
 }

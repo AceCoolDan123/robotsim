@@ -63,34 +63,24 @@ public class Robot extends Component
 
         float newX = (float) (x + (dx/distance)*globalRobotSpeed*speed);
         float newY = (float) (y + (dy/distance)*globalRobotSpeed*speed);
-        
-        System.out.println(getName() + ": " + position.toString() + "\n(newX, newY) = (" + newX +"," + newY + ")");
-        System.out.flush();
 
         if((destinationX - newX)*dx < 0)
         {
             this.setxCoordinate((float) destinationX);
-            System.out.println("flop type 1.1");
         }
         else
         {
             this.setxCoordinate(newX);
-            System.out.println("flop type 1.2");
         }
         if((destinationY - newY)*dy < 0)
         {
             this.setyCoordinate((float) destinationY);
-            System.out.println("flop type 2.1");
-
         }
         else
         {
             this.setyCoordinate(newY);
-            System.out.println("flop type 2.2");
         }
 
-        System.out.println(getName() + ": " + position.toString() + "\n(newX, newY) = (" + newX +"," + newY + ")");
-        
     }
 
     @Override
@@ -100,7 +90,6 @@ public class Robot extends Component
         {
             currentComponent = componentsToVisit.get(visitedComponentsIdx);
             visitedComponentsIdx = (visitedComponentsIdx+1) % (componentsToVisit.size());
-            System.out.println("visited component changed ! currentIdx : "+visitedComponentsIdx);
             hasArrived = false;
         } 
         else 

@@ -3,6 +3,7 @@ package robotsim.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import fr.tp.inf112.projects.canvas.model.Style;
@@ -16,6 +17,8 @@ import fr.tp.inf112.projects.graph.impl.GridVertex;
 import fr.tp.inf112.projects.graph.impl.GridEdge;
 
 import robotsim.IObstacle;
+import robotsim.controller.FactoryViewer;
+import robotsim.controller.SimulatorController;
 
 public class Factory extends Component implements Canvas, Observable
 {
@@ -24,11 +27,11 @@ public class Factory extends Component implements Canvas, Observable
     private ArrayList<Component> components = new ArrayList<Component>();
     private ArrayList<Figure> figures = new ArrayList<Figure>();
     private String id = "";
-    private GridGraph graph = new GridGraph();
+    private transient GridGraph graph = new GridGraph();
 
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
-    private transient ArrayList<Observer> observers = new ArrayList<Observer>();
+    private transient ArrayList<Observer> observers;
     private boolean isSimulationRunning = false;
 
     public Factory(Dimension dimension, String name)
@@ -186,27 +189,29 @@ public class Factory extends Component implements Canvas, Observable
 
     /* -------------------------- METHODS OBSERVABLE -------------------------- */
 
-    public boolean addObserver(Observer observer) 
+
+    protected ArrayList<Observer> getObservers() 
     {
-        if (observers == null){
+        if (observers == null) {
             observers = new ArrayList<>();
         }
-        
-        return observers.add(observer);
+        return observers;
+    }
+
+    public boolean addObserver(Observer observer) 
+    {
+        return getObservers().add(observer);
     }
 
     public boolean removeObserver(Observer observer) 
     {
-        return observers.remove(observer);
+        return getObservers().remove(observer);
     }
 
     protected void notifyObservers() 
     { 
-        if (observers == null){
-            observers = new ArrayList<>();
-        }
         // To be called every time model data is modified
-        for (Observer observer : observers) 
+        for (Observer observer : getObservers()) 
         {
             observer.modelChanged();
         }
