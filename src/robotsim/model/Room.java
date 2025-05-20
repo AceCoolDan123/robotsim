@@ -7,9 +7,8 @@ import robotsim.view.BasicStyle;
 
 import fr.tp.inf112.projects.canvas.model.Style;
 import fr.tp.inf112.projects.canvas.model.Shape;
-import robotsim.IObstacle;
 
-public class Room extends Component implements IObstacle
+public class Room extends Component 
 {
     private Door[] doors;
     private Area[] areas;
@@ -45,7 +44,8 @@ public class Room extends Component implements IObstacle
         return "Room " + getBasicPrintInfo() + "\n contains " + Arrays.toString(doors) + "\n contains " + Arrays.toString(areas);
     }
 
-    @Override boolean isOverlapping(Point point)
+    @Override 
+    public boolean isOverlapping(Point point)
     {
         boolean overlappingEdge = 
         // left edge
@@ -57,9 +57,20 @@ public class Room extends Component implements IObstacle
         // up edge
         ((point.y == (int)position.y) && isInXBoundaries(point.x));
 
-        boolean notOverlappingDoor = 
 
-        return overlappingEdge && notOverlappingDoor;
+        return overlappingEdge && notOverlappingDoors(point);
+    }
+
+    private boolean notOverlappingDoors(Point point)
+    {
+        for (Door door : doors)
+        {
+            if(door.isOverlapping(point))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isInXBoundaries(float x)
@@ -80,4 +91,7 @@ public class Room extends Component implements IObstacle
     {
         return areas;
     }
+
+    @Override
+    public void behave() {}
 }

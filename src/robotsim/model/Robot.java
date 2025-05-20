@@ -1,21 +1,14 @@
 package robotsim.model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
 import fr.tp.inf112.projects.canvas.model.Shape; 
 
-import javax.lang.model.util.ElementScanner14;
-import javax.print.attribute.standard.Destination;
-
 import robotsim.view.BasicOval;
 import robotsim.view.BasicStyle;
-import robotsim.view.BasicStroke;
 
-import fr.tp.inf112.projects.graph.ShortestPath;
 import fr.tp.inf112.projects.graph.impl.GridVertex;
-import fr.tp.inf112.projects.graph.impl.GridGraph;
 import fr.tp.inf112.projects.graph.DijkstraAlgorithm;
 import fr.tp.inf112.projects.graph.Vertex;
 import fr.tp.inf112.projects.graph.Graph;
@@ -54,7 +47,7 @@ public class Robot extends Component
         destinations.add(point);
     }
 
-    public void move(Component component)
+    public void move()
     {
         float distance = this.getPosition().distance(component.getPosition());
         float x = this.getTruexCoordinate();
