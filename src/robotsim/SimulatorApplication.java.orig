@@ -85,10 +85,21 @@ public class SimulatorApplication {
 >>>>>>> 1dd5191 (committing changes)
 =======
 =======
+<<<<<<< HEAD
         Robot robot1 = new Robot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory1);
 >>>>>>> ee7b86d (collider must be implemented but it works otherwise !)
+<<<<<<< HEAD
 >>>>>>> d37aba2 (collider must be implemented but it works otherwise !)
+<<<<<<< HEAD
 >>>>>>> e2b2bb3 (collider must be implemented but it works otherwise !)
+=======
+=======
+=======
+        Robot robot1 = new Robot(new Point(leftDoorPoint.getxCoordinate(), leftDoorPoint.getyCoordinate() - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory);
+>>>>>>> fc9b7c1 (committing changes)
+>>>>>>> 0343809 (trying to commit)
+>>>>>>> 3da93dd (trying to commit)
+>>>>>>> 55cbd0e (trying to commit)
         robot1.addDestination(puckPoint);
         robot1.addDestination(chargingPoint);
         robot1.addDestination(puckPoint);
