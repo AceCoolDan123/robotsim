@@ -8,12 +8,16 @@ import fr.tp.inf112.projects.canvas.model.Canvas;
 import fr.tp.inf112.projects.canvas.controller.Observer;
 import fr.tp.inf112.projects.canvas.controller.Observable;
 
+import robotsim.graph.SerializableGridGraph;
+import robotsim.graph.SerializableGridVertex;
+import robotsim.graph.SerializableGridEdge;
+
 import fr.tp.inf112.projects.graph.impl.GridGraph;
 import fr.tp.inf112.projects.graph.impl.GridVertex;
-import fr.tp.inf112.projects.graph.impl.GridEdge;
 import fr.tp.inf112.projects.graph.Edge;
+import java.io.Serializable;
 
-public class Factory extends Component implements Canvas, Observable
+public class Factory extends Component implements Canvas, Observable, Serializable
 {
     /* -------------------------- ATTRIBUTES CANVAS -------------------------- */
     
@@ -22,15 +26,16 @@ public class Factory extends Component implements Canvas, Observable
 
     /* -------------------------- ATTRIBUTES OBSERVABLE -------------------------- */
     
-    private ArrayList<Observer> observers = new ArrayList<Observer>();
+    private transient ArrayList<Observer> observers;
     private boolean isSimulationRunning = false;
 
-    private GridGraph graph = new GridGraph();
+    private SerializableGridGraph graph;
     private ArrayList<Component> components = new ArrayList<Component>();
 
     public Factory(Dimension dimension, String name)
     {
         super(new Point(0,0), dimension, name);
+        observers = new ArrayList<Observer>();
     }
 
     public boolean addComponent(Room room) 
@@ -88,6 +93,7 @@ public class Factory extends Component implements Canvas, Observable
 
     public void constructGraph()
     {
+        graph = new SerializableGridGraph();
         int w = dimension.getWidth();
         int h = dimension.getHeight();
 
@@ -99,16 +105,16 @@ public class Factory extends Component implements Canvas, Observable
 
                 if (isOverlapping(point)) { continue; }
 
-                GridVertex currentVertex = new GridVertex("Vertex" + i + "." + j, i, j);
-                GridVertex upVertex = (GridVertex)graph.getVertex("Vertex" + i + "." + (j - 1));
-                GridVertex leftVertex = (GridVertex)graph.getVertex("Vertex" + (i - 1) + "." + j);
+                GridVertex currentVertex = new SerializableGridVertex("Vertex" + i + "." + j, i, j);
+                GridVertex upVertex = (SerializableGridVertex)graph.getVertex("Vertex" + i + "." + (j - 1));
+                GridVertex leftVertex = (SerializableGridVertex)graph.getVertex("Vertex" + (i - 1) + "." + j);
 
                 graph.addVertex(currentVertex);
 
                 // Up Edge
                 if (upVertex != null)
                 {
-                    Edge edge = new GridEdge(graph, upVertex, currentVertex, 1);
+                    Edge edge = new SerializableGridEdge(graph, upVertex, currentVertex, 1);
                     graph.addEdge(edge);
                     upVertex.addEdge(edge);
                     currentVertex.addEdge(edge);
@@ -116,7 +122,7 @@ public class Factory extends Component implements Canvas, Observable
                 // Left Edge
                 if (leftVertex != null)
                 {
-                    Edge edge = new GridEdge(graph, leftVertex, currentVertex, 1);
+                    Edge edge = new SerializableGridEdge(graph, leftVertex, currentVertex, 1);
                     graph.addEdge(edge);
                     leftVertex.addEdge(edge);
                     currentVertex.addEdge(edge);
@@ -156,7 +162,7 @@ public class Factory extends Component implements Canvas, Observable
 
     public GridGraph getGraph()
     {
-        return graph;
+        return (GridGraph)graph;
     }
 
     /* -------------------------- METHODS CANVAS -------------------------- */
@@ -190,6 +196,10 @@ public class Factory extends Component implements Canvas, Observable
     @Override
     public boolean addObserver(Observer observer) 
     {
+        if (observers == null)
+        {
+            observers = new ArrayList<Observer>();
+        }
         return observers.add(observer);
     }
 
@@ -225,7 +235,7 @@ public class Factory extends Component implements Canvas, Observable
             notifyObservers();
 
             try {
-                Thread.sleep(200);
+                Thread.sleep(20);
             } 
             catch (InterruptedException ex) {
                 ex.printStackTrace();

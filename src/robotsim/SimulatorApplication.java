@@ -13,7 +13,13 @@ import robotsim.model.Robot;
 
 import robotsim.controller.SimulatorController;
 
+import robotsim.persistence.FactoryPersistenceManager;
+
+import java.awt.Canvas;
+
 import fr.tp.inf112.projects.canvas.view.CanvasViewer;
+import fr.tp.inf112.projects.canvas.view.FileCanvasChooser;
+import fr.tp.inf112.projects.canvas.model.CanvasChooser;
 
 public class SimulatorApplication {
     public static void main(String[] args) 
@@ -22,8 +28,6 @@ public class SimulatorApplication {
         int roomLength = 20;
         int robotLength = 3;
 
-        //Point centerPoint = createPoint(factoryLength / 2 - roomLength / 2, factoryLength /2 - roomLength / 2);
-        //Point centerDoorPoint = createPoint(factoryLength / 2, factoryLength / 2 - roomLength / 2);
         Point leftPoint = createPoint(factoryLength / 4 - roomLength / 2, factoryLength / 2 - roomLength / 2);
         Point leftDoorPoint = createPoint(factoryLength / 4, factoryLength / 2 - roomLength / 2);
         Point rightPoint = createPoint(3 * factoryLength / 4 - roomLength / 2, factoryLength / 2 - roomLength / 2);
@@ -48,7 +52,7 @@ public class SimulatorApplication {
         factory1.addComponent(new ChargingStation(chargingPoint, new Dimension(10, 10), "Charging Station"));
         factory1.addComponent(new Puck(puckPoint, new Dimension(2, 2), "Puck"));
 
-        Robot robot1 = new Robot(new Point(leftDoorPoint.getxCoordinate(), leftDoorPoint.getyCoordinate() - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory1);
+        Robot robot1 = new Robot(new Point(leftDoorPoint.x, leftDoorPoint.y - 5), new Dimension(robotLength, robotLength), "Robot0", (float)1, factory1);
         robot1.addDestination(puckPoint);
         robot1.addDestination(chargingPoint);
         robot1.addDestination(puckPoint);
@@ -57,7 +61,10 @@ public class SimulatorApplication {
 
         factory1.constructGraph();
 
-        SimulatorController controller = new SimulatorController(factory1);
+        Canvas viewer = new Canvas();
+        FileCanvasChooser chooser = new FileCanvasChooser(viewer, "txt", "Text");
+        FactoryPersistenceManager persistenceManager = new FactoryPersistenceManager((CanvasChooser)chooser);
+        SimulatorController controller = new SimulatorController(factory1, persistenceManager);
 
         CanvasViewer canvasViewer = new CanvasViewer(controller);
         controller.addObserver(canvasViewer);

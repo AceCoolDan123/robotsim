@@ -7,7 +7,7 @@ import robotsim.view.BasicStyle;
 
 import fr.tp.inf112.projects.canvas.model.Shape;
 
-public class Area extends Component
+public class Area extends Component 
 {
     private Machine[] machines;
 

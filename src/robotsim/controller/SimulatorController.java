@@ -1,6 +1,7 @@
 package robotsim.controller;
 
 import robotsim.model.Factory;
+import robotsim.persistence.FactoryPersistenceManager;
 
 import fr.tp.inf112.projects.canvas.controller.CanvasViewerController;
 import fr.tp.inf112.projects.canvas.controller.Observer;
@@ -13,11 +14,13 @@ public class SimulatorController implements CanvasViewerController
 
     private final Factory factoryModel;
     private Canvas canvasModel;
+    private final FactoryPersistenceManager persistenceManager;
 
-    public SimulatorController(Factory factoryModel)
+    public SimulatorController(Factory factoryModel, FactoryPersistenceManager persistenceManager)
     {
         this.factoryModel = factoryModel;
         this.canvasModel = (Canvas)factoryModel;
+        this.persistenceManager = persistenceManager;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class SimulatorController implements CanvasViewerController
 	
 	public CanvasPersistenceManager getPersistenceManager()
     {
-        return null;
+        return persistenceManager; 
     }
 	
     @Override

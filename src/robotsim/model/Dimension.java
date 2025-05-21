@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Dimension implements Serializable
 {
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     public Dimension()
     {
@@ -13,7 +13,7 @@ public class Dimension implements Serializable
         height = 0;
     }
 
-    public Dimension(int height, int width)
+    public Dimension(final int height, final int width)
     {
         this.height = height;
         this.width = width;
