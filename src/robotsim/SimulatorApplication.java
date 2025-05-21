@@ -13,7 +13,13 @@ import robotsim.model.Robot;
 
 import robotsim.controller.SimulatorController;
 
+import robotsim.persistence.FactoryPersistenceManager;
+
+import java.awt.Canvas;
+
 import fr.tp.inf112.projects.canvas.view.CanvasViewer;
+import fr.tp.inf112.projects.canvas.view.FileCanvasChooser;
+import fr.tp.inf112.projects.canvas.model.CanvasChooser;
 
 public class SimulatorApplication {
     public static void main(String[] args) 
@@ -22,8 +28,6 @@ public class SimulatorApplication {
         int roomLength = 20;
         int robotLength = 3;
 
-        //Point centerPoint = createPoint(factoryLength / 2 - roomLength / 2, factoryLength /2 - roomLength / 2);
-        //Point centerDoorPoint = createPoint(factoryLength / 2, factoryLength / 2 - roomLength / 2);
         Point leftPoint = createPoint(factoryLength / 4 - roomLength / 2, factoryLength / 2 - roomLength / 2);
         Point leftDoorPoint = createPoint(factoryLength / 4, factoryLength / 2 - roomLength / 2);
         Point rightPoint = createPoint(3 * factoryLength / 4 - roomLength / 2, factoryLength / 2 - roomLength / 2);
@@ -57,7 +61,10 @@ public class SimulatorApplication {
 
         factory1.constructGraph();
 
-        SimulatorController controller = new SimulatorController(factory1);
+        Canvas viewer = new Canvas();
+        FileCanvasChooser chooser = new FileCanvasChooser(viewer, "txt", "Text");
+        FactoryPersistenceManager persistenceManager = new FactoryPersistenceManager((CanvasChooser)chooser);
+        SimulatorController controller = new SimulatorController(factory1, persistenceManager);
 
         CanvasViewer canvasViewer = new CanvasViewer(controller);
         controller.addObserver(canvasViewer);

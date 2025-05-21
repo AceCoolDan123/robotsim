@@ -20,8 +20,8 @@ public class Robot extends Component
     private final static double globalRobotSpeed = 1;
 
     /* -------------------------- BEHAVIORAL ATTRIBUTES -------------------------- */
-    private Queue<Point> destinations = new LinkedList<Point>();
-    private Queue<GridVertex> onGoingPath = new LinkedList<GridVertex>();
+    private Queue<Point> destinations = new LinkedList<>();
+    private Queue<Point> onGoingPath = new LinkedList<>();
     private Point currentDestination;
     private float epsilon = (float) 0.4;
     private Factory factory;
@@ -94,7 +94,7 @@ public class Robot extends Component
 
             for (Vertex vertex : path)
             {
-                onGoingPath.add((GridVertex)vertex);
+                onGoingPath.add(new Point(((GridVertex)vertex).getxCoordinate(), ((GridVertex)vertex).getyCoordinate()));
             }
         } 
         else if (currentDestination != null && this.getPosition().distance(currentDestination) > epsilon)
@@ -102,10 +102,8 @@ public class Robot extends Component
             move();
             return;
         }
-
         // following onGoingPath
-        GridVertex vertex = onGoingPath.poll();
-        currentDestination = new Point(vertex.getxCoordinate(), vertex.getyCoordinate());
+        currentDestination = onGoingPath.poll();
     }
 
     @Override

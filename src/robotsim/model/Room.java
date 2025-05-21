@@ -11,6 +11,7 @@ public class Room extends Component
 {
     private Door[] doors;
     private Area[] areas;
+    private int offsetX = 0, offsetY = 3; 
 
     /* -------------------------- ATTRIBUTES FIGURE -------------------------- */
 
@@ -48,13 +49,13 @@ public class Room extends Component
     {
         boolean overlappingEdge = 
         // left edge
-        ((point.x == (int)position.x) && (point.y > position.y) && isInYBoundaries(point.y)) ||
+        ((point.x == (int)position.x - offsetX) && isInYBoundaries(point.y)) ||
         // right edge
-        ((point.x == (int)(position.x + dimension.getWidth())) && isInYBoundaries(point.y)) ||
+        ((point.x == (int)(position.x + dimension.getWidth() + offsetX)) && isInYBoundaries(point.y)) ||
         // bottom edge
-        ((point.y == (int)(position.y + dimension.getHeight())) && isInXBoundaries(point.x)) ||
+        ((point.y == (int)(position.y + dimension.getHeight() + offsetY)) && isInXBoundaries(point.x)) ||
         // up edge
-        ((point.y == (int)position.y) && isInXBoundaries(point.x));
+        ((point.y == (int)position.y - offsetY) && isInXBoundaries(point.x));
 
         return overlappingEdge && notOverlappingDoors(point);
     }
@@ -73,12 +74,12 @@ public class Room extends Component
 
     private boolean isInXBoundaries(float x)
     {
-        return (x >= position.x) && (x <= position.x + dimension.getWidth()); 
+        return (x >= position.x - offsetX) && (x <= position.x + dimension.getWidth() + offsetX); 
     }
 
     private boolean isInYBoundaries(float y)
     {
-        return (y >= position.y) && (y <= position.y + dimension.getHeight()); 
+        return (y >= position.y - offsetY) && (y <= position.y + dimension.getHeight() + offsetY); 
     }
 
     public Door[] getDoors()

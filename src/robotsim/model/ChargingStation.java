@@ -5,7 +5,7 @@ import robotsim.view.BasicStyle;
 
 import fr.tp.inf112.projects.canvas.model.Shape;
 
-public class ChargingStation extends Component
+public class ChargingStation extends Component 
 {
     public ChargingStation(Point position, Dimension dimension, String name)
     {

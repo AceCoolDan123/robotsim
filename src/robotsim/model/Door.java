@@ -54,7 +54,6 @@ public class Door extends Component
     public String toString()
     {
         return "Door [name = " + getName() + ", position = "+ position + ", isVertical = " + isVertical + "]";
-        //return "Door [name = " + name + ", left = " + left + ", right = " + right + "]";
     }
 
     public boolean getIsVertical()
